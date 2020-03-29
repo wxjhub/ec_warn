@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://cxf.apache.org/jaxws 
+						http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	 <bean id="remoteCellSerive" class="com.vprisk.etl.remote.service.impl.RemoteCellSeriveImpl">  
+     	<property name="processStatusService" ref="processStatusService"/>
+        <property name="parameterCommonService" ref="parameterCommonService"/>
+        <property name="batchStatusService" ref="batchStatusService"/>
+        <property name="taskStatusService" ref="taskStatusService"/>
+        
+    </bean>  
+    
+	<!-- ws的终端配置 -->
+	<jaxws:endpoint id="remote" 
+		implementor="#remoteCellSerive" address="/RemoteCellSerive" >
+		
+	</jaxws:endpoint>
+	
+
+	</beans>

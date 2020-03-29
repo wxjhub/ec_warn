@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.WarnBatchHisTaskLog" table="MNT_WARN_BATCH_HIS_TASKLOG">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="batchId" type="java.lang.String" column="BATCH_ID"></property>
+		<property name="processId" type="java.lang.String" column="PROCESS_ID"></property>
+		<property name="taskId" type="java.lang.String" column="TASK_ID"></property>
+		<property name="runFlag" type="java.lang.String" column="RUN_FLAG"></property>
+		<property name="runTime" type="java.lang.String" column="RUN_TIME"></property>
+		<property name="stdTime" type="java.sql.Timestamp" column="STD_TIME"></property>
+		<property name="endTime" type="java.sql.Timestamp" column="END_TIME"></property>
+		<property name="asOfDate" type="java.sql.Timestamp" column="AS_OF_DATE"></property>
+		<property name="createDate" type="java.sql.Timestamp" column="CREATE_DATE"></property>
+		<property name="errorMessage" type="java.lang.String" column="ERROR_MESSAGE"></property>
+		<property name="sumcount" type="java.lang.Double" column="SUMCOUNT"></property>
+		<property name="count" type="java.lang.Double" column="COUNT"></property>
+		<property name="jobId" type="java.lang.String" column="JOB_ID"></property>
+		<property name="taskRunid" type="java.lang.String" column="TASK_RUNID"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="security"
+		extends="struts-default,json-default">
+		
+		<!--<interceptors>
+	     	<interceptor name="rmp_exception" class="com.vprisk.rmplatform.exception.ExceptionInteceptor"/>
+			<interceptor-stack name="securityStack">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="rmp_exception" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="securityStack"/>-->
+		
+		<interceptors>
+	     	<interceptor name="rmp_exception" class="com.vprisk.rmplatform.exception.ExceptionInteceptor"/>
+			<interceptor-stack name="defaultStack-security">
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+                </interceptor-ref>
+
+            </interceptor-stack>
+            
+			<interceptor-stack name="securityStack">
+				<interceptor-ref name="defaultStack-security" />
+				 <interceptor-ref name="rmp_exception" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="securityStack"/>
+		
+		
+		<global-results> 
+			<result name="error">/errorPage.jsp</result> 
+		</global-results> 
+		
+		<!-- 登录跳转 
+			如需集成BI单点登录,请将所有的"com.vprisk.rmplatform.security.action.LoginAction"
+			替换为"com.vprisk.rmplatform.security.action.LoginBIAction"
+		-->
+		<action name="loginTo" class="com.vprisk.rmplatform.security.action.LoginBIAction" method="loginTo">
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="frameTo" class="com.vprisk.rmplatform.security.action.LoginBIAction" method="frameTo">
+			<result name="success" type="redirect">secMenu_toIndex.action?flag=${userFlag}</result>
+			<result name="toReport" type="redirect">${reportUrl}</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+		<action name="ssoLogin" class="com.vprisk.rmplatform.security.action.LoginBIAction" method="ssoLogin">
+			<result name="ssoLogin" type="redirect">${ssoUrl}</result>
+			<result name="fail">/login.jsp</result>
+		</action>
+		
+		<action name="logout" class="com.vprisk.rmplatform.security.action.LoginBIAction" method="logout">
+			<result name="tologout" type="redirect">/login.jsp</result>
+		</action>
+		 
+		<!--操作日志	-->
+		<action name="operationLog_*" class="com.vprisk.rmplatform.components.log.service.web.OperationLogAction" method="{1}">
+		  	<result name="toDetail">/sec/sec_operationLog_form.jsp</result>
+			<result>/etl/operationLogList.jsp</result>
+			<result name="getdata" type="json"></result>			
+		</action>
+				
+	  	<action name="dictItem_*" class="com.vprisk.rmplatform.components.datadict.web.DictItemAction" method="{1}">
+			<result name="list">/sec/dict_item_list.jsp</result>
+			<result name="success" type="json"></result>
+	      	<result name="saveInfo" type="json"></result>
+	    </action>
+	   
+	    <action name="dictDef_*" class="com.vprisk.rmplatform.components.datadict.web.DictDefAction" method="{1}">
+	      <result name="list">/sec/dict_def_list.jsp</result>
+	      <result name="success" type="json"></result>
+	      <result name="saveInfo" type="json"></result>
+	    </action>
+
+	    <!-- jbpm用户管理 -->
+	    <action name="secUserPop" class="com.vprisk.rmplatform.security.action.UserPopAction" method="query">
+	        <result name="list">/sec/sec_user_list.jsp</result>
+	    </action>
+	  
+	    <!-- 当前用户管理-->
+	    <action name="currentUserAction_*" class="com.vprisk.rmplatform.security.action.CurrentUserAction" method="{1}">
+	      <result name="toForm">/sec/sec_currentUser_form.jsp</result>
+	    </action>
+		<!--用户管理-->
+		<action name="secUser_*" class="com.vprisk.rmplatform.security.action.UserAction" method="{1}">
+	    	<result name="toForm">/sec/sec_user_form.jsp</result>
+	    	<result name="update">/sec/sec_user_form.jsp</result>
+	    	<result name="checkUserInfo">/sec/sec_user_form.jsp</result>
+	    	<result name="success" type="json">/sec/sec_user_list.jsp</result>
+	    	<result name="searchInfo" type="json">/sec/sec_user_form.jsp</result>
+	    	<result name="reSearch" type="json">/sec/sec_user_form.jsp</result>
+	    </action>
+	    
+	   <!--机构管理-->
+	    <action name="organ_*" class="com.vprisk.rmplatform.security.action.OrganAction" method="{1}">
+	    	<result name="list">/sec/sec_organ_list.jsp</result>
+		   	<result name="editForm">/sec/sec_organ_form.jsp</result>
+	    	<result name="addForm">/sec/sec_organ_form.jsp</result>
+	  	</action>
+
+	  	<!--用户角色-->
+	 	<action name="secRole_*" class="com.vprisk.rmplatform.security.action.RoleAction" method="{1}">
+	    	<result name="list">/sec/sec_role_list.jsp</result>
+	    </action>
+	    
+		<action name="secMenu_*" class="com.vprisk.rmplatform.security.action.MenuAction" method="{1}">
+			<result name="toIndex" >/index.jsp</result>
+			<result name="shortcutsort">/sec/sec_shortcut_sort.jsp</result>
+			<result name="saveRightOfShortcut" type="redirect">secMenu_findAllMenuByUserName.action</result>
+	   	</action>
+	    <action name="resource_*" class="com.vprisk.rmplatform.security.action.ResourceAction" method="{1}">
+	      <result name="list"></result>
+	      <result name="form"></result>
+	    </action>
+	    <action name="role_*" class="com.vprisk.rmplatform.security.action.RoleAction" method="{1}">
+	      <result name="list">/sec/sec_role_list.jsp</result>
+	      <result name="toForm">/sec/sec_role_form.jsp</result>
+	       <result name="save">/sec/sec_role_list.jsp</result>
+	      <result name="toRightPage">/sec/sec_right_tree.jsp</result>
+	      <result name="toMgrPage">/sec/sec_mgr_role.jsp</result>
+	      <result name="saveRight" type="redirect">role_toRight.action?roleId=${id}</result>
+	      <result name="saveMgr" type="redirect">role_toMgrPage.action?roleId=${id}</result>
+	      <result name="success" type="json"></result>
+	    </action>
+	    
+	    <action name="dataAcess_*" class="com.vprisk.rmplatform.security.action.DataAcessAction" method="{1}">
+	    	<result name="toForm">/sec/sec_dataAcess_form.jsp</result>
+	    	<result name="toViewForm">/sec/sec_dataAcess_viewForm.jsp</result>
+	    	<result name="list">/sec/sec_dataAcess_list.jsp</result>
+	    </action>
+	    
+	    
+	    <action name="project_*" class="com.vprisk.rmplatform.security.action.ProjectAction" method="{1}">
+	    	<result name="toForm">/sec/sec_project_form.jsp</result>
+	    </action>
+	    
+	    <action name="UserMgrRole_*" class="com.vprisk.rmplatform.security.action.UserMgrExcelAction" method="{1}">
+	        <result name="exportExcel" type="stream">
+				<param name="ContentType">application/vnd.ms-excel</param>
+				<param name="inputName">exportExcel</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+			<result name="exportUserExcel" type="stream">
+				<param name="ContentType">application/vnd.ms-excel</param>
+				<param name="inputName">exportUserExcel</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+    	</action>
+    	 <action name="RoleMgr_*" class="com.vprisk.rmplatform.security.action.RoleMgrExcelAction" method="{1}">
+	        <result name="exportExcel" type="stream">
+				<param name="ContentType">application/vnd.ms-excel</param>
+				<param name="inputName">exportExcel</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+    	</action>
+    	
+    	<action name="isLogin_*" class="com.vprisk.rmplatform.security.action.LoginAction" method="{1}">
+		</action>
+		
+    	<action name="OrganMgr_*" class="com.vprisk.rmplatform.security.action.OrganMgrExcelAction" method="{1}">
+	        <result name="exportOrganExcel" type="stream">
+				<param name="ContentType">application/vnd.ms-excel</param>
+				<param name="inputName">exportOrganExcel</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+			</result>
+    	</action>
+		<!-- portal -->
+    	<action name="portal_*" class="com.vprisk.rmplatform.security.action.PortalAction" method="{1}">
+    		<result name="toForm">/sec/sec_portal_form.jsp</result>
+			<result name="toConsole">/console.jsp</result>	
+			<result name="save">/sec/sec_portal_list.jsp</result>
+			<result type="redirect" name="redirectToConsole">portal_toConsole.action?result=ok</result>  
+			 
+	    </action>
+    	<!-- 公告信息 -->
+		 <action name="message_*" class="com.vprisk.rmplatform.security.action.MessageAction" method="{1}">
+		 	<result name="toForm">/sec/sec_message_form.jsp</result>
+		 	<result name="toFormAction" type="redirect">message_toForm.action?messId=${messId}&amp;result=ok</result>
+		 	<result name="toMessageDetail">/sec/sec_message_detail.jsp</result>
+		</action>
+		<!-- 通知 -->
+		 <action name="notice_*" class="com.vprisk.rmplatform.security.action.NoticeAction" method="{1}">
+		 	<result name="toForm">/sec/sec_notice_form.jsp</result>
+		 	<result name="toFormAction" type="redirect">notice_toForm.action?noticeId=${noticeId}&amp;result=ok</result>
+		 	<result name="toNoticeDetail">/sec/sec_notice_detail.jsp</result>
+		</action>
+		
+		<!-- 在线登录用户管理 -->
+		<action name="onLineUser_*" class="com.vprisk.rmplatform.security.action.OnLineUserAction" method="{1}">
+		</action>
+		
+		<!-- 快捷图标管理 -->
+	    <action name="shortcutIcon_*" class="com.vprisk.rmplatform.security.action.ShortcutIconAction" method="{1}">
+		</action> 
+		
+	     <!-- 系统参数配置 -->
+		<action name="paramconfig_*" class="com.vprisk.rmplatform.security.action.ParamConfigAction" method="{1}">
+		 	<result name="toForm">/sec/common_param_config_form.jsp</result>
+		</action>
+		
+		<!-- 附件上传管理 -->
+		<action name="attach_*" class="com.vprisk.rmplatform.security.action.AttachmentAction" method="{1}">
+		  <result name="toForm">/sec/sec_attach_form.jsp</result>
+		  <result name="uploadfile" type="stream">  <!-- 附件下载 -->
+                 <param name="contentType">text/plain</param>  
+                 <param name="inputName">fileStream</param>  
+                 <param name="contentDisposition">attachment;filename="${fileName}"</param>  
+          </result> 
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "sql-map-config-2.dtd">
+<sqlMapConfig>
+	  <settings cacheModelsEnabled="true"   
+              enhancementEnabled="true"  
+              lazyLoadingEnabled="true"   
+              errorTracingEnabled="false"   
+              maxRequests="32"  
+              maxSessions="10"   
+              maxTransactions="5"   
+              useStatementNamespaces="true"  />  
+       <!--   
+      Settings 节点   
+            cacheModelsEnabled : 是否启用SqlMapClient上的缓存机制。 建议设为"true"   
+            enhancementEnabled : 是否针对POJO启用字节码增强机getter/setter的调用效能，避免Reflect所带来的性能开销。同时，这也为Lazy Loading带来提升。 建议设为"true"   
+            errorTracingEnabled: 是否启用错误日志，在开发期间建议设为"true" 以方便调试   
+            lazyLoadingEnabled : 是否启用延迟加载机制，建议设为"true"   
+            maxRequests : 最大并发请求数（Statement并发数）   
+            maxTransactions : 最大并发事务数   
+            maxSessions : 最大Session数。即当前最大允许的并发SqlMapClient数。   
+            useStatementNamespaces : 是否使用Statement命名空间。   
+                     这里的命名空间指的是映射文件中，sqlMap节的namespace属性，如在上例中针对t_use  
+                表的映射文件sqlMap节点： <sqlMap namespace="User"> 这里，指定了此sqlMap节点下定义的操作均属于"User"命名空间。 在useStatementNamespaces="true"的情况下，Statement调用需追加命名空间，如：sqlMap.update("User.updateUser",user);   
+                否则直接通过Statement名称调用即可，如： sqlMap.update("updateUser",user); 但请注意此时需要保证所有映射文件中，Statement定义无重名。  
+     -->  
+     
+     
+    <!-- 增加配置文件-->
+	<sqlMap resource="com/vprisk/etl/model/ibatis.xml" />	
+	 	
+</sqlMapConfig>

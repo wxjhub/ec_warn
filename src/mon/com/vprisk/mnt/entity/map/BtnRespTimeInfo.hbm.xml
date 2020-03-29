@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.BtnRespTimeInfo" table="RPM_RESP_BTN_INFO">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid" />
+		</id>
+
+		<property name="methodName" type="java.lang.String">
+			<column name="METHOD_NAME" />
+		</property>
+
+		<property name="methodRealName" type="java.lang.String">
+			<column name="METHOD_REAL_NAME" />
+		</property>
+
+		<property name="methodPath" type="java.lang.String">
+			<column name="METHOD_PATH" />
+		</property>
+
+	</class>
+</hibernate-mapping>

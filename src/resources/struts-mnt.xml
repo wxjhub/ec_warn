@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="mnt" extends="struts-default,json-default">
+
+		<interceptors>
+			<interceptor name="rmp_exception"
+				class="com.vprisk.rmplatform.exception.ExceptionInteceptor" />
+			<interceptor-stack name="defaultStack-security">
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+				</interceptor-ref>
+			</interceptor-stack>
+
+			<interceptor-stack name="securityStack">
+				<interceptor-ref name="defaultStack-security" />
+				<interceptor-ref name="rmp_exception" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="securityStack" />
+
+		<global-results>
+			<result name="error">/errorPage.jsp</result>
+		</global-results>
+
+		<!-- 系统基本配置 -->
+		<action name="clientconfig_*" class="com.vprisk.mnt.action.ClientConfigAction" method="{1}">
+		</action>
+		<!-- 交易成功率配置 -->
+		<action name="transactionSuccessConfig_*" class="com.vprisk.mnt.action.TransactionSuccessConfigAction" method="{1}">
+		</action>
+		<!-- 交易时长配置 -->
+		<action name="transactionTimeConfig_*" class="com.vprisk.mnt.action.TransactionTimeConfigAction" method="{1}">
+		</action>
+		<!-- 长时间无交易配置 -->
+		<action name="transactionEndConfig_*" class="com.vprisk.mnt.action.TransactionEndConfigAction" method="{1}">
+		</action>
+		<!-- 应用服务数配置 -->
+		<action name="applyprosoftConfig_*" class="com.vprisk.mnt.action.ApplyProSoftConfigAction" method="{1}">
+		</action>
+			<!-- 文件配置 -->
+		<action name="fileConfig_*" class="com.vprisk.mnt.action.FileConfigAction" method="{1}">
+		</action>
+			<!-- 日终配置 -->
+		<action name="dayendConfig_*" class="com.vprisk.mnt.action.DayEndConfigAction" method="{1}">
+		</action>
+		<!-- 本端配置 -->
+		<action name="localNetWorkConfig_*" class="com.vprisk.mnt.action.LocalNetWorkConfigAction" method="{1}">
+		</action>
+		<!-- 对端配置 -->
+		<action name="externalNetWorkConfig_*" class="com.vprisk.mnt.action.ExternalNetWorkConfigAction" method="{1}">
+		</action>
+		<!-- sql阻塞配置 -->
+		<action name="sqlBlockConfig_*" class="com.vprisk.mnt.action.SqlBlockConfigAction" method="{1}">
+		</action>
+		<!-- 表分析配置 -->
+		<action name="tableAnalysisConfig_*" class="com.vprisk.mnt.action.TableAnalysisConfigAction" method="{1}">
+		</action>
+		
+		
+		
+		<!-- 交易成功率 -->
+		<action name="transactionSuccess_*" class="com.vprisk.mnt.action.TransactionSuccessAction" method="{1}">
+		</action>
+		
+			<!-- 应用服务数 -->
+		<action name="applyprosoft_*" class="com.vprisk.mnt.action.ApplyProSoftAction" method="{1}">
+		</action>
+		
+		<!-- 本端网络监控配置 -->
+		<action name="localNetwork_*" class="com.vprisk.mnt.action.LocalNetWorkAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+				<!-- 外系统网络监控配置 -->
+		<action name="externalNetwork_*" class="com.vprisk.mnt.action.ExternalNetWorkAction" method="{1}">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+			<!-- sql阻塞监控 -->
+		<action name="sqlBlock_*" class="com.vprisk.mnt.action.SqlBlockAction" method="{1}">
+		</action>
+			<!-- 表分析 -->
+		<action name="tableAnalysis_*" class="com.vprisk.mnt.action.TableAnalysisAction" method="{1}">
+		</action>
+		<!-- 文件传输监控 -->
+		<action name="fileTranControl_*" class="com.vprisk.mnt.action.FileTranControlAction" method="{1}">
+		</action>
+			<!-- 关联系统LIST文件查询 -->
+		<action name="filelistcheck_*" class="com.vprisk.mnt.action.FileListCheckAction" method="{1}">
+		</action>
+		
+			<!-- 日终 -->
+		<action name="dayEndMonitor_*" class="com.vprisk.mnt.action.DayEndMonitorAction" method="{1}">
+		</action>
+		<!-- 报警历史查询 -->
+		<action name="warnHistory_*" class="com.vprisk.mnt.action.WarnHistoryAction" method="{1}">
+		</action>
+		<!-- 预警时间间隔设置 -->
+		<action name="warnInterval_*" class="com.vprisk.mnt.action.WarnIntervalAction" method="{1}">
+		</action>
+		<!-- 短信 -->
+		<action name="bookparam_*" class="com.vprisk.mnt.action.BookParamAction" method="{1}">
+		</action>
+		<!-- 预警告警 -->
+		<action name="warnModuleConfig_*" class="com.vprisk.mnt.action.WarnModuleConfigAction" method="{1}">
+		</action>
+		<!-- 跑批预警告警 -->
+		<action name="warnBatchConfig_*" class="com.vprisk.mnt.action.WarnBatchConfigAction" method="{1}">
+		    	 <result name="toForm">/mnt/mnt_warn_batch_form.jsp</result>
+		</action>
+		<!-- 跑批预警告警 -->
+		<action name="warnBatchHisTaskLog_*" class="com.vprisk.mnt.action.WarnBatchHisTaskLogAction" method="{1}">
+		</action>
+		<action name="warnBatch_*" class="com.vprisk.mnt.action.WarnModuleAction" method="{1}">
+		</action>
+		<!-- 按钮交易成功率展示 -->
+		<action name="btnTranStranSucss_*" class="com.vprisk.mnt.action.BtnTranStranSucssAction" method="{1}">
+		</action>
+		<!-- 按钮交易成功率配置 -->
+		<action name="btnSuccessConfig_*" class="com.vprisk.mnt.action.BtnSuccessConfigAction" method="{1}">
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"> 
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="configLocation" value="classpath:quartz.properties"/>		
+		<!--这个是必须的，QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动-->
+		<property name="startupDelay" value="0"/>		
+		<!--这个是可选，QuartzScheduler 启动时更新己存在的Job，这样就不用每次修改targetObject后删除qrtz_job_details表对应记录了-->
+		<property name="overwriteExistingJobs" value="true"/>	
+    </bean>   
+      
+      
+    <bean id="receiveMessageCall" class="com.vprisk.etl.dispatch.management.ReceiveMessageCall">
+    </bean>
+      
+    <bean id="schedulerManagement" class="com.vprisk.etl.dispatch.management.SchedulerManagement" init-method="init">
+    	<property name="scheduler" ref="quartzScheduler"/>
+    	<property name="eventManagement" ref="queueMessageListener"></property>
+    	<property name="schedulerContorl" ref="schedulerContorl"></property>
+ 
+    	
+    </bean> 
+    
+   	<bean id="taskThread" class="com.vprisk.etl.job.TaskThread">
+    	
+    </bean>
+    
+    <bean id="schedulerProcess" class="com.vprisk.etl.dispatch.management.SchedulerProcess">
+      
+    	<property name="batchService" ref="batchService"></property>
+    </bean>
+    
+    <bean id="schedulerContorl" class="com.vprisk.etl.dispatch.management.SchedulerContorl">
+    	<property name="batchService" ref="batchService"></property>
+    	<property name="processService" ref="processService"></property>
+    	<property name="taskService" ref="taskService"></property>
+    	<property name="taskRelationService" ref="taskRelationService"></property>
+    	<property name="processRelationService" ref="processRelationService"></property>
+  	</bean>
+    <bean id="schedulerFace" class="com.vprisk.etl.dispatch.management.SchedulerFace">
+    	<property name="scheduler" ref="quartzScheduler"></property>
+  	</bean>
+  	 <!-- 
+    <bean id="schedulerContorl" class="com.vprisk.scheduler.management.SchedulerContorl">
+    	<property name="jobFlowService" ref="jobFlowService"></property>
+    	<property name="jobService" ref="jobService"></property>
+    	<property name="dependService" ref="dependService"></property>
+    	<property name="jobLogService" ref="jobLogService"></property>
+    	<property name="jobFlowLogService" ref="jobFlowLogService"></property>
+    </bean>
+    
+    <bean id="jobFlowCycManage" class="com.vprisk.scheduler.management.JobFlowCycManage">
+    	<property name="flowService" ref="jobFlowService"></property>
+    	<property name="jobFlowLogService" ref="jobFlowLogService"></property>
+    	<property name="cycService" ref="cycService"></property>
+    </bean>
+   
+    -->
+     <!--麻测试  -->
+     <bean id="myTimer" class="com.vprisk.lrms.action.abcAction" autowire="byType"></bean> 
+    
+    <!-- 定时器配置 -->
+
+ <bean id="timeDitail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+ <property name="targetObject" ref="myTimer"></property><!-- 指定任务类 -->
+ <property name="targetMethod" value="abc"></property><!-- 指定任务方法 -->
+ </bean>
+    
+ <bean id="timeTigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+ <property name="jobDetail" ref="timeDitail"></property>
+	 <property name="cronExpression">
+	 <value>0 0/1 * * * ?</value>
+	 </property>
+ </bean> 
+<!-- 启动定时器 --> 
+<bean id="startJob" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+ <property name="triggers">
+ <list>
+ <ref bean="timeTigger"/>  
+ </list>
+ </property>
+ </bean>
+</beans>

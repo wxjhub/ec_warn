@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 调整上传大小设置 -->
+	<constant name="struts.multipart.maxSize" value="100000000"/> 	
+	<package name="metadataxml" extends="struts-default,json-default">
+		
+		<interceptors>
+	     	<interceptor name="rmp_exception" class="com.vprisk.rmplatform.exception.ExceptionInteceptor"/>
+			<interceptor-stack name="defaultStack-security">
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+                </interceptor-ref>
+
+            </interceptor-stack>
+            
+			<interceptor-stack name="securityStack">
+				<interceptor-ref name="defaultStack-security" />
+				 <interceptor-ref name="rmp_exception" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="securityStack"/>
+		
+		<global-results>
+			<result name="error">/errorPage.jsp</result> 
+		</global-results> 
+		
+		<!-- 系统用户表查询
+		<action name="metadataTable_*" class="com.vprisk.rmplatform.components.console.web.UserTablePreviewAction" method="{1}"> 
+			<result name="list">/platform/metadata/list_user_table.jsp</result>
+         	<result name="toGenMetaTable" type="redirect">/metaModel_list.action?pageNo=1</result>
+         	<result name="toGenMetaXML"  type="redirect">metaModelXml_list.action?pageNo=${pageNo}</result>
+         	<result name="list_xml">/platform/metadataxml/user_tables_list.jsp</result>
+		</action> -->
+
+		<action name="userTable_*" class="com.vprisk.rmplatform.components.console.web.UserTablePreviewAction" method="{1}"> 
+			<!--<result name="list">/meta/metadata/list_user_table.jsp</result>-->
+         	<result name="toGenMetaTable" type="redirect">/metaModel_list.action?pageNo=1</result>
+         	<result name="toGenMetaXML"  type="redirect">/meta/metadata/meta_table_list.jsp</result>
+         	<result name="list_xml">/meta/metadata/user_tables_list.jsp</result>
+		</action>
+		<!-- 元数据模型 -->
+		<action name="metaModelXml_*" class="com.vprisk.rmplatform.components.console.web.MetaModelXmlAction" method="{1}">
+			<result name="list">/meta/metadata/meta_table_list.jsp</result>
+         	<result name="toDetail">/meta/metadata/meta_table_form.jsp</result>
+         	<result name="toFieldList">/meta/metadata/meta_table_field_list.jsp</result>
+         	<result name="toModelDetail" type="redirect">metaModelXml_toForm.action?modelName=${modelName}</result>
+         	<result name="toList" type="redirect">/meta/metadata/meta_table_list.jsp</result>
+		</action>
+		
+		<!-- 元数据模型字段 -->
+		<action name="metaModelFieldXml_*" class="com.vprisk.rmplatform.components.console.web.MetaModelFieldXmlAction" method="{1}">
+         	<result name="toForm">/meta/metadata/meta_table_field_form_xml.jsp</result>
+         	<result name="toFieldDetail" type="redirect">/metaModelFieldXml_toForm.action?uuid=${uuid}&amp;modelName=${modelName}&amp;propertyName=${propertyName}</result>
+         	<result name="toModelDetail" type="redirect">metaModelXml_toForm.action?modelName=${modelName}</result>
+         	<result name="toFieldList" type="redirect">metaModelXml_fieldList.action?modelName=${modelName}</result>
+         	<result name="getRefModels" type="json"></result>
+         	<result name="getRefModelFields" type="json"></result>
+         	<result name="getPropertyType" type="json"></result>
+       
+		</action> 
+				
+		<!-- 查询交易 -->
+		<action name="queryTrans_xml_*" class="com.vprisk.rmplatform.components.console.web.QueryTransFromXmlAction" method="{1}">
+			<result name="list">/meta/metadata/query_trans_xml_list.jsp</result><!-- 展示当前model的所有查询类交易 -->
+			<result name="toDetail">/meta/metadata/query_trans_xml_form.jsp</result>
+			<result name="json" type="json"></result>
+		</action>	
+		
+		<!-- 表单和查询条件与tree相关的异步数据加载 -->
+		<action name="metadataJson_*" class="com.vprisk.rmplatform.components.metadata.engine.MetadataJsonAction" method="{1}">
+		</action>
+		
+		<!-- 元数据CRUD XML实现 -->
+		<action name="metaxml_*" class="com.vprisk.rmplatform.components.metadata.web.MetaModelXmlAction" method="{1}"  >
+			<result name="list">/meta/pagemodel/metaXml_data_list.jsp</result>
+			<result name="import">/platform/pagemodel/import_meta_row.jsp</result>
+			<result name="toImportForm">/meta/pagemodel/list_params_import.jsp</result>
+			<result name="importSuccess">/meta/pagemodel/successImport.jsp</result>
+			<result name="toAdd">/meta/pagemodel/add_meta_row.jsp</result> 
+			<result name="toList" type="redirect">metaxml_query.action?transId=${#parameters.transId[0]}</result> 
+			
+			<result name="json" type="json"></result>
+			<result name="download" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="inputName">excel</param>
+			</result>
+			<result name="downloadTemplate" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="${filename}"</param>
+				<param name="inputName">excel</param>
+			</result>
+		</action>
+	</package>
+</struts>

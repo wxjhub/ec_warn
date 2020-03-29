@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.FileTransmission" table="RPM_FILETRANS_INFO">
+		<id name="fileName" type="java.lang.String" column="FILE_NAME">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="sourseSys" type="java.lang.String" column="SOURSE_SYS"></property>
+		<property name="tranStat" type="java.lang.String" column="TRAN_STAT"></property>
+		<property name="errorInfo" type="java.lang.String" column="ERROR_INFO"></property>
+		<property name="tranType" type="java.lang.String" column="TRAN_TYPE"></property>
+		<property name="tranStartTime" type="java.util.Date" column="TRAN_START_TIME"></property>
+		<property name="tranEndTime" type="java.util.Date" column="TRAN_END_TIME"></property>
+		<property name="tranTimeSize" type="java.lang.Integer" column="TRAN_TIME_SIZE"></property>
+		<property name="dataDate" type="java.util.Date" column="DATA_DATE"></property>
+	</class>
+</hibernate-mapping>

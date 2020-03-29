@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+     <class name="com.vprisk.mnt.entity.BtnSuccess" table="MNT_BTNTRANSACTION_SUCCESS">
+          <id name = "uuid" type = "java.lang.String" column="uuid">
+                <generator class="uuid"></generator>
+          </id>
+          <property name="btnName" type="java.lang.String" column="BTN_NAME"></property>
+          <property name="btnPath" type="java.lang.String" column="BTN_PATH"></property>
+          <property name="localSystem" type="java.lang.String" column="LOCAL_SYSTEM"></property>
+          <property name="rate" type="java.lang.String" column="RATE"></property>
+          <property name="recordDate" type="java.lang.String" column="RECORD_DATE"></property>
+          <property name="col1" type="java.lang.String" column="COL1"></property>
+          <property name="allCount" type="java.lang.Integer" column="ALL_COUNT"></property>
+          <property name="succCount" type="java.lang.Integer" column="SUCC_COUNT"></property>
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.TableAnalysis" table="MNT_TABLE_ANALYSIS">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="tablespaceName" type="java.lang.String" column="TABLESPACE_NAME"></property>
+		<property name="tableName" type="java.lang.String" column="TABLE_NAME"></property>
+		<property name="lastAnalyzed" type="java.lang.String" column="LAST_ANALYZED"></property>
+		<property name="sampleSize" type="java.math.BigDecimal" column="SAMPLE_SIZE"></property>
+		<property name="tableSize" type="java.math.BigDecimal" column="TABLE_SIZE"></property>
+		<property name="deviation" type="java.math.BigDecimal" column="DEVIATION"></property>
+		<property name="collectDate" type="java.lang.String" column="COLLECT_DATE"></property>
+		<property name="warningLevl" type="java.lang.Integer" column="WARNING_LEVL"></property>
+		
+	</class>
+</hibernate-mapping>

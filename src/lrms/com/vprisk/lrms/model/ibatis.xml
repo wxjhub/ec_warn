@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.vprisk.etl.model.Ibatis">
+
+ <typeAlias type="com.vprisk.etl.model.Ibatis" alias="Ibatis"/>
+  
+  <!-- 获得全查询列表 -->
+  <select id="findIbatisAll" resultClass="Ibatis">
+    select * from ibatis
+  </select>
+  
+  <select id="select" resultClass="Ibatis" parameterClass="String">
+    select * from ibatis where id = #id#
+  </select>
+
+  <insert id="insert" >
+  	INSERT INTO IBATIS (ID, NAME, AGE) VALUES ('ddd', 'ddd', '111')
+  </insert>
+</sqlMap>
+

@@ -1,0 +1,107 @@
+.icon-goPage{
+	background: url('../images/goPage.png') no-repeat;
+}
+.icon-add{
+	background:url('themes/icons/edit_add.png') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-exportTemplate{
+	background:url('../images/left_icon5.gif') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-export{
+	background:url('../images/left_icon2.gif') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-import{
+	background:url('../images/left_icon3.gif') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-query{
+	background:url('../images/left_icon8.gif') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-form{
+	background:url('../images/left_icon12.gif') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-edit{
+	background:url('themes/icons/pencil.png') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-remove{
+	background:url('themes/icons/edit_remove.png') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-save{
+	background:url('themes/icons/filesave.png') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-cancel{
+	background:url('themes/icons/cancel.png') no-repeat;
+	display:inline-block;
+	height:16px;
+	line-height:16px;
+	padding:0px;
+	padding-left: 20px;
+}
+.icon-firstpage{
+	background:url(../images/pagination_first.gif) no-repeat;
+}
+.icon-prevpage{
+	background:url(../images/pagination_prev.gif) no-repeat;
+}
+.icon-nextpage{
+	background:url(../images/pagination_next.gif) no-repeat;
+}
+.icon-lastpage{
+	background:url(../images/pagination_last.gif) no-repeat;
+}
+a:hover.l-btn{
+	background-position: bottom right;
+	outline:none;
+}
+a:hover.l-btn-plain{
+	border:1px solid #7eabcd;
+	background:url('themes/default/images/button_plain_hover.png') repeat-x left bottom;
+	_padding:0px 5px 0px 0px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}

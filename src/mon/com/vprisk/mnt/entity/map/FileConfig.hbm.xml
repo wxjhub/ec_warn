@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.FileConfig" table="MNT_FILE_CONFIG">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="sysName" type="java.lang.String" column="SYS_NAME"></property>
+		<property name="sysCode" type="java.lang.String" column="SYS_CODE"></property>
+	    <property name="fileName" type="java.lang.String" column="FILE_NAME"></property>
+		<property name="fileType" type="java.lang.String" column="FILE_TYPE"></property>
+		<property name="fileSize" type="java.lang.String" column="FILE_SIZE"></property>
+		
+		<property name="dealTimeValuesY" type="java.lang.Integer" column="DEAL_TIME_VALUES_Y"></property>
+	    <property name="dealTimeValuesG" type="java.lang.Integer" column="DEAL_TIME_VALUES_G"></property>
+		<property name="dealFailTimeValues" type="java.lang.Integer" column="DEAL_FAIL_TIME_VALUES"></property>
+	    <property name="rate" type="java.lang.Integer" column="RATE"></property>
+		<property name="dealTime" type="java.lang.Integer" column="DEAL_TIME"></property>
+		<property name="fileRecTime" type="java.lang.Integer" column="FILE_REC_TIME"></property>
+		<property name="warnLevel" type="java.lang.Integer" column="WARN_LEVEL"></property>
+		<property name="remark" type="java.lang.String" column="REMARK"></property>
+		<property name="style" type="java.lang.String" column="STYLE"></property>
+		<property name="datePrice" type="java.lang.Integer" column="DATE_PRICE"></property>
+		<property name="theOtherDay" type="java.lang.Integer" column="THE_OTHER_DAY"></property>
+		<property name="fileNumber" type="java.lang.Integer" column="FILE_NUMBER"></property>
+		<property name="fixedDate" type="java.util.Date" column="FIXED_DATE"></property>
+	</class>
+</hibernate-mapping>

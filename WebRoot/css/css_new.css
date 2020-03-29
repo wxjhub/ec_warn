@@ -1,0 +1,640 @@
+@charset "utf-8";
+/* CSS Document */
+/**/
+
+.bottomBack{
+	background-attachment: scroll;
+	background-image: url(../images/rightbg2.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+/*按钮样式*/
+.inputd{
+	border:0;
+	background:url(../images/btnimg.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #c7c7c7 solid 1px;
+}
+/*鼠标经过按钮改变背景图片*/
+.inputd:hover{
+	border:0;
+	background:url(../images/btnimg2.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#000;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #79beca solid 1px;
+}
+.gowrite_r{
+	width:300px;
+	margin-left:74px;
+}
+/*网格页面查询信息边距*/
+.majorword{
+	height:auto;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+
+/*输入框样式：用于查询界面*/
+.input_eq{
+	width:150px;
+	border:#CCC solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;
+}
+/*输入框样式：用于表单界面*/
+.input_eq2{
+	width:150px;   
+	border:#CCC solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	padding: 0 2px 0 2px;
+	width: 150px;
+	line-height: 20px;
+}
+/*鼠标经过输入框样式：用于表单界面*/
+.input_eq2:HOVER{
+	width:150px;   
+	border:#8DB2E3 solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;
+}
+/*输入框获取焦点样式：用于表单界面*/
+.input_eq2:FOCUS{
+	width:150px;   
+	border:#8DB2E3 solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;
+}
+/*该样式主要应用于表单界面，距离顶部的大小*/
+.table_b1{
+	margin-top:10px;
+}
+/*表单的边框*/
+.table_b1 form{
+	border:#c0c0c0 solid 1px;
+}
+
+/*begin 自定义网格工具栏图标*/
+/*添加*/
+.add{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/edit_add.png) no-repeat left center;
+	cursor:pointer;
+}
+.add:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*编辑*/
+.editor{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/righticons2.gif) no-repeat left center;
+	cursor:pointer;
+}
+.editor:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+
+/*导入*/
+.import{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon3.gif) no-repeat left center;
+	cursor:pointer;
+}
+.import:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*导出*/
+.export{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon2.gif) no-repeat left center;
+	cursor:pointer;
+}
+.export:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*查询*/
+.query{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon8.gif) no-repeat left center;
+	cursor:pointer;
+}
+.query:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*表单*/
+.form{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon12.gif) no-repeat left center;
+	cursor:pointer;
+}
+.form:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*excel模板*/
+.excelTemplate{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon5.gif) no-repeat left center;
+	cursor:pointer;
+}
+.excelTemplate:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*后退*/
+.derived{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/righticons8.gif) no-repeat left center;
+	cursor:pointer;
+}
+.derived:HOVER{
+	margin-left:3px;
+}
+/*统计*/
+.statistics{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/righticons3.gif) no-repeat left center;
+	cursor:pointer;
+}
+.statistics:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*分类*/
+.sort{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/righticons4.gif) no-repeat left center;
+	cursor:pointer;
+}
+.sort:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*保存*/
+.filesave{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/filesave.png) no-repeat left center;
+	cursor:pointer;
+}
+
+.filesave:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*删除*/
+.delete{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/edit_remove.png) no-repeat left center;
+	cursor:pointer;
+}
+.delete:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*解锁*/
+.noLocked{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/no_lock.png) no-repeat left center;
+	cursor:pointer;
+}
+.noLocked:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*取消*/
+.cancle{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/undo.gif) no-repeat center;
+	cursor:pointer;
+}
+.cancle:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*返回*/
+.back{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon9.gif) no-repeat center;
+	cursor:pointer;
+}
+.back:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*下一个*/
+.next{
+	display:block;
+	padding-left:20px;
+	margin-left:4px;
+	background:url(../images/left_icon10.gif) no-repeat center;
+	cursor:pointer;
+}
+.next:HOVER{
+	cursor:pointer;
+	margin-left:3px;
+}
+/*end 自定义网格工具栏图标 */
+
+/*自定义网格表头样式 */
+.thead td{
+	color:#0e549a;
+	height:26px;
+	text-align:left;
+	padding-left:5px;
+	border-bottom:#d8d8d8 solid 1px;
+	border-right:#d8d8d8 dotted 1px;
+	background-image: url(../images/datagrid_header_bg.gif);
+	background-repeat: repeat-x;
+	font-weight: normal;
+}
+
+/*自定义网格单元格样式 */
+.table_list td{
+	text-align:left;
+	padding-left:5px;
+	height:25px;
+	border-bottom:#d8d8d8 dotted 1px;
+	border-right:#d8d8d8 dotted 1px;
+}
+
+/*自定义网格标题栏样式 */
+.table_tt{
+	background:url(../images/panel_title.png) repeat-x;
+	font-weight:bold;
+	font-size:13px;
+	color:#15428b;
+	height:30px;
+	line-height:30px;
+	border:#99bbe8 solid 1px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+}
+
+/*自定义网格标题栏图标样式 */
+.table_tt font{
+	background:url('../images/Edit.png') center left no-repeat;
+	padding-left: 20px
+}
+
+/*个人信息表单标题栏图标 */
+.table_tt span{
+	background:url('../images/currentUser.png') center left no-repeat;
+	padding-left: 20px;
+	margin-left: 5px;
+}
+
+/*老版按钮样式*/
+.zh_btn{
+	margin-top:30px;
+	border-top:#CCC dotted 1px;
+	padding-top:10px;
+	margin-right: 25px;
+}
+.zh_btnbg1{
+	border:0;
+	background:url(../images/rightbtn2.gif) no-repeat;
+	width:55px;
+	height:21px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+.zh_btnbg2{
+	border:0;
+	background:url(../images/rightbtn1.gif) no-repeat;
+	width:55px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+.zh_btnbg3{
+	border:0;
+	background:url(../images/rightbtnbig.gif) no-repeat;
+	width:90px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+
+/*鼠标经过自定义网格每一行每一行时的背景色*/
+.td_bg{
+	background:#D0E5F5;
+}
+
+/*select框样式*/
+.input_bga{
+	width:202px;
+}
+
+/*begin自定义网格各行变色样式（通过js来控制）*/
+#tab .trOdd{
+	background-color: #ffffff
+}
+#tab .trEven{
+	background-color: #e6f0fe;
+}
+/*end自定义网格各行变色样式（通过js来控制）*/
+
+/*选中自定义网格某一行时的背景色*/
+#tab .selectedbg{
+	background-color: #B7E0EA
+}
+
+/*begin自定义网格分页栏样式*/
+.page{
+	background:url(../images/toolbg.png) repeat-x;
+	height:31px;
+	line-height: 31px;
+}
+.page select{
+	margin-top: 7px;
+	margin-left: 6px;
+}
+.page form{
+	border-top-style: none;
+}
+.table_panel{
+	height: 260px;
+	background: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.firstpages{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_first.gif) no-repeat center;
+}
+.firstpages:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#7eabcd solid 1px;
+	background:#dee8f4 url(../images/pagination_first.gif) no-repeat center;
+}
+.lastpage{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_last.gif) no-repeat center;
+}
+.lastpage:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#7eabcd solid 1px;
+	background:#dee8f4 url(../images/pagination_last.gif) no-repeat center;
+}
+.prevpage{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_prev.gif) no-repeat center;
+}
+.prevpage:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#7eabcd solid 1px;
+	background:#dee8f4 url(../images/pagination_prev.gif) no-repeat center;
+}
+.nextpage{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_next.gif) no-repeat center;
+}
+.nextpage:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#7eabcd solid 1px;
+	background:#dee8f4 url(../images/pagination_next.gif) no-repeat center;
+}
+.goPage{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/goPage.png) no-repeat center;
+}
+.goPage:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/goPage.png) no-repeat center;
+}
+.infoload{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_load.png) no-repeat center;
+}
+.infoload:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#7eabcd solid 1px;
+	background:#dee8f4 url(../images/pagination_load.png) no-repeat center;
+}
+.firstpages2{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_first.png) no-repeat center;
+}
+.firstpages2:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/pagination_first.png) no-repeat center;
+}
+.lastpage2{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_last.png) no-repeat center;
+}
+.lastpage2:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/pagination_last.png) no-repeat center;
+}
+.prevpage2{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_prev.png) no-repeat center;
+}
+.prevpage2:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/pagination_prev.png) no-repeat center;
+}
+.nextpage2{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/pagination_next.png) no-repeat center;
+}
+.nextpage2:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/pagination_next.png) no-repeat center;
+}
+.separator{
+	height:24px;
+	border-left:1px solid #ccc;
+	border-right:1px solid #fff;
+	margin:3px 1px;
+}
+
+.goPage2{
+	padding:4px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	background:url(../images/goPage2.png) no-repeat center;
+}
+.goPage2:HOVER{
+	padding:3px;
+	height:16px;
+	width:16px;
+	margin-top:3px;
+	border:#b4d4ec solid 1px;
+	background:#e9eff6 url(../images/goPage2.png) no-repeat center;
+}
+/*end自定义网格分页栏样式*/
+
+/*表单界面底部工具栏*/
+.tool_btn{
+	background:url(../images/toolbg.png) repeat-x;
+	height:31px;
+	border:#c0c0c0 solid 1px;
+	border-top-style: none;
+}
+
+/*表单界面底部工具栏按钮距离顶部距离*/
+.tool_btn input{
+	margin-top: 5px;
+}
+/*表单界面背景图片*/
+.form_bg{
+	background:#fff url(../images/form_bg.png) bottom repeat-x;
+}
+
+/*网格、表单标题背景圆角样式（当页面中有使用基于easyui的网格、panel组件都会自动引用该样式）*/
+.panel-header{
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+}

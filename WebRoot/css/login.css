@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background:#bbd9fd;
+	width:100%;
+	height:100%;
+	font-size:12px; 
+	color:#333333;
+	font-family:Helvetica, sans-serif,Arial;
+	font-family:'Microsoft YaHei';
+	/*background:#f1f1f1; */
+	background-image:url(about:blank);
+	background-attachment:fixed;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote,table, th, td,iframe {
+    margin: 0;
+    padding: 0;
+}
+/*登陆页中间部分的宽度*/
+.width1000{ 
+	width:1000px; 
+	margin:0px auto;
+}
+
+/*登陆页面背景*/
+#index_all{
+	position:absolute;
+	background:url(../images/login_bg2.jpg);
+	width:100%;
+	bottom: 30px;
+	
+}
+/*登陆页面地球背景图片*/
+.index_login{
+	background:url(../images/login_earth.jpg) center bottom no-repeat;
+	height:597px;
+}
+
+/*登陆页面输入框距离左边距离*/
+.index_login input{
+	height: 20px;
+	margin-left: 7px;
+}
+/*登陆页面文字“用户名”、“密码”样式*/
+.index_login td span{
+	font-size: 15px;
+	color: #003A8F;
+	font-weight:550;
+	line-height: 25px;
+}
+/*登陆页面用户名输入框样式*/
+.index_login input.inptxt{
+	border:1.5px #003A8F solid;
+	background:#fff url(../images/login_user_icon.jpg) no-repeat 5px !important;
+	padding-left: 20px;
+	font-size: 13px;
+	line-height: 24px;
+	height: 24px;
+	width: 160px;
+}
+/*登陆页面密码输入框样式*/
+.index_login input.inptxt1{
+	border:1.5px #003A8F solid;
+	background:#fff url(../images/login_pwd_icon.jpg) no-repeat 5px !important;
+	padding-left: 20px;
+	font-size: 13px;
+	line-height: 24px;
+	height: 24px;
+	width: 160px;
+}
+/*登陆按钮样式*/
+.index_btn{
+	background:url(../images/rebackBtn.jpg) no-repeat;
+	border:0;
+	width:74px;
+	height:26px;
+	cursor:pointer;
+	color: #fff;
+}
+/*登陆按钮鼠标经过样式*/
+.index_btn:HOVER{
+	background:url(../images/rebackBtn2.jpg) no-repeat;
+	border:0;
+	width:74px;
+	height:26px;
+	cursor:pointer;
+	color: #fff;
+	/*filter:alpha(opacity=100);
+	opacity:1.00;*/
+}
+	
+/*页面底部版权样式*/
+#pagebottom{
+	height:30px;
+	z-index:100000;
+	background:url(../images/topTabBg.png) bottom repeat-x;
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid #959595;
+}
+	

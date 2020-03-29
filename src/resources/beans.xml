@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://3g.ahong.com/schema/mrp/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://3g.ahong.com/schema/xls/beans xlsbean.xsd"> 
+<!--fileName支持通配符--> 
+
+<bean className="com.vprisk.etl.model.Task"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="taskId" value="任务编号" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="taskDesc" value="任务名称" nullable="false" seq="1" type="java.lang.String" ></property> 
+    <property name="scriptName" value="脚本名称" nullable="false" seq="2" type="java.lang.String"></property>
+    <property name="taskType" value="任务类型" class="com.vprisk.etl.model.TaskType" property="taskTypeId" type="java.lang.String" seq="3"></property>
+ <property name="server" value="服务编号" class="com.vprisk.etl.model.Server" property="serverId" type="java.lang.String" seq="4"></property>
+ <property name="scriptType" value="脚本类型" nullable="false" seq="5" type="java.lang.String"></property> 
+</bean> 
+
+<bean className="com.vprisk.etl.model.Batch"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="batchId" value="批次编号" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="batchName" value="批次名称" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="useText" value="批次说明"  seq="2" type="java.lang.String" ></property> 
+  <property name="endDate" value="结束日期"  seq="3" type="java.util.Date" ></property> 
+  <property name="dataDate" value="数据日期" seq="4" type="java.util.Date" ></property> 
+  <property name="runFlag" value="运行状态"  seq="5" type="java.lang.String" ></property> 
+</bean> 
+
+<bean className="com.vprisk.etl.model.Process"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="processId" value="任务组编号" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="processName" value="任务组名称" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="useText" value="任务组说明" nullable="true" seq="2" type="java.lang.String" ></property> 
+</bean> 
+
+
+<bean className="com.vprisk.etl.model.ProcessRelation"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="batchId" value="批次编号" nullable="false" seq="0" type="java.lang.String"></property>
+  <property name="processId" value="当前任务组编号" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="previousProcessId" value="前置任务组编号"  seq="2" type="java.lang.String" ></property> 
+</bean> 
+<bean className="com.vprisk.etl.model.Server"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="serverId" value="服务编号" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="serverName" value="服务名称" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="serverType" value="服务类型" nullable="false" seq="2" type="java.lang.String" ></property> 
+  <property name="serverUrl" value="服务地址" nullable="false" seq="3" type="java.lang.String" ></property> 
+  <property name="serverPort" value="服务端口"  seq="4" type="java.lang.String" ></property> 
+  <property name="serverUserName" value="用户名" seq="5" type="java.lang.String" ></property> 
+  <property name="serverPassWord" value="密码"  seq="6" type="java.lang.String" ></property> 
+</bean> 
+
+<bean className="com.vprisk.etl.model.TaskRelation"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="processId" value="任务组编号" nullable="false" seq="0" type="java.lang.String"></property>  
+  <property name="taskId" value="当前任务编号" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="previousTaskId" value="前置任务编号"  seq="2" type="java.lang.String" ></property> 
+  <property name="previousProcessId" value="前置任务组编号"  seq="3" type="java.lang.String" ></property> 
+</bean> 
+
+<bean className="com.vprisk.etl.model.TaskType"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="taskTypeId" value="任务类型编号" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="taskTypeName" value="任务类型名称" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="taskTypeDesc" value="任务类型描述"  seq="2" type="java.lang.String" ></property> 
+</bean> 
+
+<bean className="com.vprisk.etl.model.SchedulerParam"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="batchId" value="批次ID" nullable="false" unique="true" seq="0" type="java.lang.String"></property> 
+  <property name="paramId" value="参数ID" nullable="false" seq="1" type="java.lang.String"></property> 
+  <property name="paramName" value="参数名称"  seq="2" type="java.lang.String" ></property> 
+  <property name="paramValue" value="参数值"  seq="3" type="java.lang.String" ></property> 
+  <property name="paramType" value="参数类型"  seq="4" type="java.lang.String" ></property> 
+  <property name="serverId" value="服务器ID"  seq="5" type="java.lang.String" ></property> 
+  <property name="forecastType" value="预处理类型"  seq="6" type="java.lang.String" ></property> 
+  
+</bean>  
+<bean className="com.vprisk.etl.model.BatchParam"  > 
+  <!-- bean属性名，xls中列名 顺序不要求 --> 
+  <property name="batchId" value="批次ID" nullable="false"  seq="0" type="java.lang.String"></property> 
+  <property name="paramId" value="参数ID" nullable="false" unique="true" seq="1" type="java.lang.String"></property> 
+  <property name="paramName" value="参数名称"  seq="2" type="java.lang.String" ></property> 
+  <property name="paramValue" value="参数值"  seq="3" type="java.lang.String" ></property> 
+  <property name="paramType" value="参数类型"  seq="4" type="java.lang.String" ></property> 
+  <property name="serverId" value="服务器ID"  seq="5" type="java.lang.String" ></property> 
+  <property name="forecastType" value="预处理类型"  seq="6" type="java.lang.String" ></property> 
+  
+</bean> 
+</beans>

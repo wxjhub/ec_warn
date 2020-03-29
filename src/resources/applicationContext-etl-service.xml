@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+  <bean id="batchService" class="com.vprisk.etl.service.impl.BatchServiceImpl"> 
+    <property name="batchDao" ref="batchDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="processStatusDao" ref="processStatusDao"/> 
+    <property name="batchParamDao" ref="batchParamDao"/> 
+    <property name="batchStatusDao" ref="batchStatusDao"/> 
+    
+    <property name="schedulerParamDao" ref="schedulerParamDao"/> 
+  </bean>  
+  <bean id="operationHisLogService" class="com.vprisk.etl.service.impl.OperationHisLogServiceImpl"> 
+    <property name="operationHisLogDao" ref="operationHisLogDao"/> 
+  </bean>  
+  <bean id="processService" class="com.vprisk.etl.service.impl.ProcessServiceImpl"> 
+    <property name="processDao" ref="processDao"/>  
+    <property name="taskRelationDao" ref="taskRelationDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="processStatusDao" ref="processStatusDao"/> 
+  </bean>  
+  <bean id="processRelationService" class="com.vprisk.etl.service.impl.ProcessRelationServiceImpl"> 
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="processStatusDao" ref="processStatusDao"/>  
+    <property name="taskDao" ref="taskDao"/>
+    <property name="batchStatusDao" ref="batchStatusDao"/>  
+  </bean>  
+  <bean id="processStatusService" class="com.vprisk.etl.service.impl.ProcessStatusServiceImpl"> 
+    <property name="processStatusDao" ref="processStatusDao"/> 
+  </bean>  
+  <bean id="serverService" class="com.vprisk.etl.service.impl.ServerServiceImpl"> 
+    <property name="serverDao" ref="serverDao"/> 
+  </bean>  
+  <bean id="taskService" class="com.vprisk.etl.service.impl.TaskServiceImpl"> 
+    <property name="taskDao" ref="taskDao"/>  
+    <property name="taskRelationDao" ref="taskRelationDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="processStatusDao" ref="processStatusDao"/>  
+    <property name="taskTypeService" ref="taskTypeService"/> 
+  </bean>  
+  <bean id="taskHisDetailInfoService" class="com.vprisk.etl.service.impl.TaskHisDetailInfoServiceImpl"> 
+    <property name="taskHisDetailInfoDao" ref="taskHisDetailInfoDao"/> 
+  </bean>  
+  <bean id="taskRelationService" class="com.vprisk.etl.service.impl.TaskRelationServiceImpl"> 
+    <property name="taskRelationDao" ref="taskRelationDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="taskDao" ref="taskDao"/> 
+     <property name="processStatusDao" ref="processStatusDao"/> 
+     <property name="batchStatusDao" ref="batchStatusDao"/> 
+  </bean>  
+  <bean id="taskStatusService" class="com.vprisk.etl.service.impl.TaskStatusServiceImpl"> 
+    <property name="taskStatusDao" ref="taskStatusDao"/> 
+    <property name="processStatusDao" ref="processStatusDao"/> 
+    <property name="batchStatusDao" ref="batchStatusDao"></property>
+  </bean>  
+  <bean id="statusService" class="com.vprisk.etl.service.impl.StatusServiceImpl"> 
+    <property name="processStatusDao" ref="processStatusDao"/>  
+    <property name="taskStatusDao" ref="taskStatusDao"/>  
+    <property name="taskHisDetailInfoDao" ref="taskHisDetailInfoDao"/>  
+    <property name="operationHisLogDao" ref="operationHisLogDao"/> 
+  </bean>  
+  <bean id="taskTypeService" class="com.vprisk.etl.service.impl.TaskTypeServiceImpl"> 
+    <property name="taskTypeDao" ref="taskTypeDao"/> 
+  </bean>  
+  <bean id="excelService" class="com.vprisk.etl.service.impl.ExcelServiceImpl"> 
+    <property name="taskDao" ref="taskDao"/>  
+    <property name="taskRelationDao" ref="taskRelationDao"/>  
+    <property name="taskTypeDao" ref="taskTypeDao"/>  
+    <property name="serverDao" ref="serverDao"/>
+    <property name="batchDao" ref="batchDao"/>  
+    <property name="processDao" ref="processDao"/>  
+    <property name="processRelationDao" ref="processRelationDao"/>  
+    <property name="taskRelationService" ref="taskRelationService"/>  
+    <property name="processRelationService" ref="processRelationService"/> 
+    <property name="schedulerParamDao" ref="schedulerParamDao"/> 
+    <property name="batchParamDao" ref="batchParamDao"/> 
+  </bean>  
+  <bean id="parameterCommonService" class="com.vprisk.etl.service.impl.ParameterCommonServiceImpl"> 
+    <property name="parameterCommonDao" ref="parameterCommonDao"/> 
+  </bean>  
+  
+  
+  
+  <bean id="schedulerParamService" class="com.vprisk.etl.service.impl.SchedulerParamServiceImpl"> 
+    <property name="schedulerParamDao" ref="schedulerParamDao"/> 
+  </bean>
+  
+  <bean id="processHisDetaiInfoService" class="com.vprisk.etl.service.impl.ProcessHisDetaiInfoServiceImpl"> 
+    <property name="processHisDetaiInfoDao" ref="processHisDetaiInfoDao"/> 
+  </bean>
+  <bean id="batchHisDetailInfoService" class="com.vprisk.etl.service.impl.BatchHisDetailInfoServiceImpl"> 
+    <property name="batchHisDetailInfoDao" ref="batchHisDetailInfoDao"/> 
+  </bean>
+  
+  
+   <bean id="batchStatusService" class="com.vprisk.etl.service.impl.BatchStatusServiceImpl"> 
+    <property name="batchStatusDao" ref="batchStatusDao"/> 
+     <property name="batchDao" ref="batchDao"/>
+      <property name="schedulerParamDao" ref="schedulerParamDao"/>
+       <property name="batchParamDao" ref="batchParamDao"/>
+           <property name="taskRelationDao" ref="taskRelationDao"/>
+     <property name="processRelationDao" ref="processRelationDao"/>
+     <property name="processStatusDao" ref="processStatusDao"/>
+     <property name="taskStatusDao" ref="taskStatusDao"/>
+     <property name="taskDao" ref="taskDao"/>
+  </bean>
+  <bean id="batchParamService" class="com.vprisk.etl.service.impl.BatchParamServiceImpl"> 
+    <property name="batchParamDao" ref="batchParamDao"/> 
+    <property name="schedulerParamDao" ref="schedulerParamDao"/>
+     <property name="batchStatusDao" ref="batchStatusDao"/>
+  </bean>
+</beans>

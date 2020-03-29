@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vprisk.etl.model">
+  <class name="Task" table="ETL_SCHEDULE_TASK">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="taskId" type="java.lang.String" not-null="true" unique="true" > 
+		  <column name="Task_id" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="taskDesc" type="java.lang.String"> 
+		  <column name="Task_desc"/>
+		</property>
+		
+		<property name="scriptType" type="java.lang.String"> 
+		  <column name="SCRIPT_TYPE"/>
+		</property>
+		<property name="scriptName" type="java.lang.String"> 
+		  <column name="SCRIPTNAME"/>
+		</property>
+		
+		<property name="taskName" type="java.lang.String"> 
+		  <column name="task_name "/>
+		</property>
+	
+	   <!-- 
+		<property name="serverId" type="java.lang.String"> 
+		  <column name="SERVER_ID "/>
+		</property>
+		 -->
+		<property name="useText" type="java.lang.String"> 
+		  <column name="USETEXT"/>
+		</property>
+		
+		<property name="createTime" type="java.util.Date"> 
+		  <column name="createTime"/>
+		</property>
+		
+		<many-to-one name="server"  class="Server" lazy="false" property-ref="serverId" >
+			<column name="server_id" not-null="true"></column>
+		</many-to-one>
+		
+		<many-to-one name="taskType"  class="TaskType" lazy="false">
+			<column name="taskType_id" not-null="true"></column>
+		</many-to-one>
+		<!-- 
+		<set name="processes" table="TASK_PROCESS">
+			<key column="task_Id" property-ref="taskId"></key>
+			<many-to-many class="com.vprisk.etl.model.Process" property-ref="processId" column="process_Id"></many-to-many>
+		</set>
+		 -->
+	</class>
+	
+	
+	<class name="Server" table="ETL_SCHEDULE_SERVER">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="serverId" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="Server_id" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="serverName" type="java.lang.String"> 
+		  <column name="server_Name"/>
+		</property>
+		
+		<property name="serverType" type="java.lang.String">
+		  <column name="server_Type"/>
+		</property>
+		
+		<property name="serverUrl" type="java.lang.String"> 
+		  <column name="server_Url"/>
+		</property>
+	    
+		<property name="serverPort" type="java.lang.String"> 
+		  <column name="server_Port"/>
+		</property>
+		
+		<property name="serverUserName" type="java.lang.String"> 
+		  <column name="server_UserName"/>
+		</property>
+		
+		<property name="serverPassWord" type="java.lang.String"> 
+		  <column name="server_PassWord"/>
+		</property>
+		
+		<property name="runflg" type="java.lang.String"> 
+		  <column name="runflg"/>
+		</property>
+		
+		<property name="checkTime" type="java.util.Date"> 
+		  <column name="check_Time"/>
+		</property>
+		
+		<!--<set   
+            name="tasks"   
+            lazy="false"                
+            inverse="true"  
+            >  
+            <key>  
+                <column name="server_id"  not-null="true" />  
+            </key>  
+            <one-to-many class="Task" />  
+        </set> -->
+	</class>
+	
+	<class name="TaskStatus" table="ETL_SCHEDULE_taskstatus">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="taskId" type="java.lang.String"  not-null="true"> 
+		  <column name="Task_id" not-null="true"/>
+		</property>
+		
+		<property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+		
+		<property name="processId" type="java.lang.String" not-null="true"> 
+		  <column name="Process_id" not-null="true" />
+		</property>
+		
+		<property name="batchId" type="java.lang.String"  not-null="true"> 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+		
+		<property name="runFlag" type="java.lang.String"> 
+		  <column name="RUN_FLAG"/>
+		</property>
+		
+		<property name="errorId" type="java.lang.String"> 
+		  <column name="ERROR_ID"/>
+		</property>
+		
+		<property name="errorMessage" type="java.lang.String"> 
+		  <column name="ERROR_MESSAGE"/>
+		</property>
+		
+		<property name="runTime" type="java.lang.String"> 
+		  <column name="RUN_TIME"/>
+		</property>
+		
+		
+		<property name="startTime" type="java.util.Date"> 
+		  <column name="STD_TIME"/>
+		</property>
+		
+		<property name="endTime" type="java.util.Date"> 
+		  <column name="END_TIME"/>
+		</property>
+		
+		<property name="dataDate" type="java.util.Date"> 
+		  <column name="AS_OF_DATE"/>
+		</property>
+		<property name="taskName" type="java.lang.String">
+			<column name="task_name"></column>
+		</property>
+	</class>
+	
+	<class name="TaskRelation" table="ETL_SCHEDULE_taskrelation">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="taskId" type="java.lang.String" not-null="true" > 
+		  <column name="Task_id" not-null="true"/>
+		</property>
+		
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+		
+		<property name="previousTaskId" type="java.lang.String" > 
+		  <column name="Pre_TASK" />
+		</property>
+		
+		<property name="previousProcessId" type="java.lang.String" > 
+		  <column name="Pre_process" />
+		</property>
+		
+	</class>
+	
+	 <class name="Process" table="ETL_SCHEDULE_process">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="processId" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="PROCESS_ID" not-null="true" unique="true"/>
+		</property>
+	    
+		<property name="processName" type="java.lang.String"> 
+	      <column name="PROCESS_NAME" />
+	    </property>
+	    <property name="useText" type="java.lang.String"> 
+	      <column name="USETEXT" />
+	    </property>
+	        
+	    <property name="createTime" type="java.util.Date"> 
+		  <column name="CREATE_TIME"/>
+		</property>
+		
+		<property name="endDate" type="java.util.Date"> 
+		  <column name="ENDDATE"/>
+		</property>
+		<!-- 
+		<set name="tasks" table="PROCESS_TASK">
+			<key column="PROCESS_ID" property-ref="processId"></key>
+			<many-to-many class="com.vprisk.etl.model.Task" property-ref="taskId" column="Task_id"></many-to-many>
+		</set>
+		
+		<set name="batchs" table="PROCESS_BATCH">
+			<key column="PROCESS_ID" property-ref="processId"></key>
+			<many-to-many class="com.vprisk.etl.model.Batch" property-ref="batchId" column="batch_Id"></many-to-many>
+		</set>
+		 -->
+	</class>
+	
+	<class name="ProcessStatus" table="ETL_SCHEDULE_processstatus">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+
+		<property name="processId" type="java.lang.String" not-null="true"  > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+		
+		<property name="batchId" type="java.lang.String" not-null="true" > 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+		
+		<property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+		
+		<property name="runFlag" type="java.lang.String"> 
+	      <column name="RUN_FLAG" />
+	    </property>
+
+		<property name="startTime" type="java.util.Date"> 
+		  <column name="STD_TIME"/>
+		</property>
+		
+		<property name="runTime" type="java.lang.String"> 
+		  <column name="RUN_TIME"/>
+		</property>
+		
+		<property name="endTime" type="java.util.Date"> 
+		  <column name="END_TIME"/>
+		</property>
+		
+		<property name="dataDate" type="java.util.Date"> 
+		  <column name="AS_OF_DATE"/>
+		</property>
+        <property name="processName" type="java.lang.String">
+	    	 <column name="process_Name"/>
+	    </property>
+	</class>
+	
+	<class name="ProcessRelation" table="ETL_SCHEDULE_processrelation">
+			<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+		<property name="batchId" type="java.lang.String"  not-null="true"> 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+	    
+	    <property name="previousProcessId" type="java.lang.String"  > 
+		  <column name="Pre_process" />
+		</property>
+	</class>
+	
+	<class name="Batch" table="ETL_SCHEDULE_batch">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="batchId" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="batch_ID" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="batchName" type="java.lang.String"> 
+		  <column name="batch_NAME"/>
+		</property>
+		
+		
+		<property name="useText" type="java.lang.String"> 
+		  <column name="USETEXT"/>
+		</property>
+		
+		<property name="endDate" type="java.util.Date" > 
+		  <column name="END_DATE"/>
+		</property>
+		<property name="dataDate" type="java.util.Date" > 
+		  <column name="AS_OF_DATE"/>
+		</property>
+		<property name="createTime" type="java.util.Date" > 
+		  <column name="CREATE_TIME"/>
+		</property>
+	
+	</class>
+	
+	
+	<class name="BatchStatus" table="ETL_SCHEDULE_batchStatus">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="batchId" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="batch_ID" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+		<property name="jobName" type="java.lang.String"> 
+		  <column name="batch_NAME"/>
+		</property>
+		
+		<property name="runFlag" type="java.lang.String"> 
+		  <column name="RUN_FLAG"/>
+		</property>
+		
+		<property name="useText" type="java.lang.String"> 
+		  <column name="USETEXT"/>
+		</property>
+		
+		<property name="startTime" type="java.util.Date" > 
+		  <column name="STD_TIME"/>
+		</property>
+		<property name="endTime" type="java.util.Date" > 
+		  <column name="END_TIME"/>
+		</property>
+		<property name="endDate" type="java.util.Date" > 
+		  <column name="END_DATE"/>
+		</property>
+		<property name="dataDate" type="java.util.Date" > 
+		  <column name="AS_OF_DATE"/>
+		</property>
+		<property name="createTime" type="java.util.Date" > 
+		  <column name="CREATE_TIME"/>
+		</property>
+	</class>
+	
+	<class name="TaskHisDetailInfo" table="ETL_HIS_TASKDETAILINFO">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+ 
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+		 
+		<property name="batchId" type="java.lang.String" not-null="true" > 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+		 
+	    <property name="taskId" type="java.lang.String" not-null="true" > 
+		  <column name="Task_id" not-null="true"/>
+		</property>
+		
+		<property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+		
+		<property name="runFlag" type="java.lang.String"> 
+	      <column name="RUN_FLAG" />
+	    </property>
+	    
+	    
+		<property name="runTime" type="java.lang.String"> 
+	      <column name="RUN_TIME" />
+	    </property>
+	    
+	    <property name="count" type="java.lang.Integer"> 
+	      <column name="Count" />
+	    </property>
+	     <property name="sumCount" type="java.lang.Integer"> 
+	      <column name="sumCount" />
+	    </property>
+
+	    
+		<property name="startTime" type="java.util.Date"> 
+	      <column name="STD_TIME" />
+	    </property>
+	    
+	    <property name="endTime" type="java.util.Date"> 
+	      <column name="END_TIME" />
+	    </property>
+	    
+	    <property name="dataDate" type="java.util.Date"> 
+	      <column name="AS_OF_DATE" />
+	    </property>
+	    
+	    <property name="createDate" type="java.util.Date"> 
+	      <column name="CREATE_DATE" />
+	    </property>
+	    
+	    <property name="errorMessage" type="java.lang.String"> 
+	      <column name="ERROR_MESSAGE" />
+	    </property>
+	</class>
+	                 
+		<class name="ProcessHisDetailInfo" table="ETL_HIS_PROCESSDETAILINFO">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+		
+		<property name="batchId" type="java.lang.String" not-null="true" > 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+			
+		<property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+			
+		<property name="runFlag" type="java.lang.String"> 
+	      <column name="RUN_FLAG" />
+	    </property>
+	    
+	    
+		<property name="runTime" type="java.lang.String"> 
+	      <column name="RUN_TIME" />
+	    </property>
+	    
+	    <property name="count" type="java.lang.Integer"> 
+	      <column name="Count" />
+	    </property>
+	     <property name="sumCount" type="java.lang.Integer"> 
+	      <column name="sumCount" />
+	    </property>
+
+	    
+		<property name="startTime" type="java.util.Date"> 
+	      <column name="STD_TIME" />
+	    </property>
+	    
+	    <property name="endTime" type="java.util.Date"> 
+	      <column name="END_TIME" />
+	    </property>
+	    
+	    <property name="dataDate" type="java.util.Date"> 
+	      <column name="AS_OF_DATE" />
+	    </property>
+	    
+	    <property name="createDate" type="java.util.Date"> 
+	      <column name="CREATE_DATE" />
+	    </property>
+	    
+	    <property name="errorMessage" type="java.lang.String"> 
+	      <column name="ERROR_MESSAGE" />
+	    </property>
+	</class>
+	
+	<class name="BatchHisDetailInfo" table="ETL_HIS_BATCHDETAILINFO">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="batchId" type="java.lang.String" not-null="true" > 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+			
+		<property name="runFlag" type="java.lang.String"> 
+	      <column name="RUN_FLAG" />
+	    </property>
+	    
+	    <property name="jobId" type="java.lang.String"> 
+		  <column name="job_ID" />
+		</property>
+	    
+		<property name="runTime" type="java.lang.String"> 
+	      <column name="RUN_TIME" />
+	    </property>
+	    
+	    <property name="count" type="java.lang.Integer"> 
+	      <column name="Count" />
+	    </property>
+	     <property name="sumCount" type="java.lang.Integer"> 
+	      <column name="sumCount" />
+	    </property>
+
+	    
+		<property name="startTime" type="java.util.Date"> 
+	      <column name="STD_TIME" />
+	    </property>
+	    
+	    <property name="endTime" type="java.util.Date"> 
+	      <column name="END_TIME" />
+	    </property>
+	    
+	    <property name="dataDate" type="java.util.Date"> 
+	      <column name="AS_OF_DATE" />
+	    </property>
+	    
+	    <property name="createDate" type="java.util.Date"> 
+	      <column name="CREATE_DATE" />
+	    </property>
+	    
+	    <property name="errorMessage" type="java.lang.String"> 
+	      <column name="ERROR_MESSAGE" />
+	    </property>
+	</class>
+	
+	<class name="OperationHisLog" table="ETL_HIS_OPERATION">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="userId" type="java.lang.String" not-null="true"> 
+		  <column name="User_id" not-null="true"/>
+		</property>
+		
+		<property name="userOperation" type="java.lang.String"> 
+		  <column name="User_operation"/>
+		</property>
+		
+		<property name="operationTime" type="java.util.Date"> 
+	      <column name="oper_time" />
+	    </property>
+	</class>
+	
+	<class name="TaskProcess" table="etl_Task_Process">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		 <property name="taskId" type="java.lang.String" not-null="true" > 
+		  <column name="Task_id" not-null="true"/>
+		</property>
+		
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+	</class>
+	
+	<class name="ProcessBatch" table="etl_Process_Batch">
+		<id name="uuid" type="java.lang.String" column="uuid" > 
+			<generator class="uuid"/>
+		</id>
+		<property name="batchId" type="java.lang.String" not-null="true" > 
+		  <column name="Batch_id" not-null="true"/>
+		</property>
+		
+		<property name="processId" type="java.lang.String" not-null="true" > 
+		  <column name="Process_id" not-null="true"/>
+		</property>
+	</class>
+	<class name="ParameterCommon" table="ETL_PARAM_COMMON">
+		<id name="uuid" type="java.lang.String" column="uuid">
+			<generator class="uuid"/>
+		</id>
+		<property name="parameterId" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="PARAM_ID" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="parameterName" type="java.lang.String"  > 
+		  <column name="PARAM_NAME" />
+		</property>
+		<property name="parameterValue" type="java.lang.String"  > 
+		  <column name="PARAM_VALUE" />
+		</property>
+		<property name="remark" type="java.lang.String"  > 
+		  <column name="REMARK" />
+		</property>
+	</class>
+	<class name="TaskType" table="ETL_TASK_TYPE">
+		<id name="taskTypeId" type="java.lang.String" column="taskType_Id">
+			<generator class="uuid"/>
+		</id>
+		<property name="taskTypeName" type="java.lang.String" not-null="true" unique="true"> 
+		  <column name="taskType_Name" not-null="true" unique="true"/>
+		</property>
+		
+		<property name="taskTypeDesc" type="java.lang.String"  > 
+		  <column name="taskType_Desc" />
+		</property>
+		<property name="createTime" type="java.util.Date"  > 
+		  <column name="create_Time" />
+		</property>
+	</class>
+	
+	<class name="SchedulerParam" table="ETL_Schedule_param">
+		<id name="uuid" type="java.lang.String" column="uuid">
+			<generator class="uuid"></generator>
+		</id>
+		
+		<property name="batchId" type="java.lang.String"  > 
+		  <column name="batch_Id" />
+		</property>
+			<property name="jobId" type="java.lang.String"  > 
+		  <column name="job_Id" />
+		</property>
+		<property name="forecastType" type="java.lang.String"  > 
+		  <column name="forecast_Type" />
+		</property>
+		<property name="forecastValue" type="java.lang.String"  > 
+		  <column name="forecast_Value" />
+		</property>
+		<property name="paramId" type="java.lang.String"  > 
+		  <column name="param_Id" />
+		</property>
+		
+		<property name="paramName" type="java.lang.String"  > 
+		  <column name="param_Name" />
+		</property>
+
+		<property name="serverId" type="java.lang.String"  > 
+		  <column name="serverId" />
+		</property>
+		<property name="paramType" type="java.lang.String"  > 
+		  <column name="param_Type" />
+		</property>
+		<property name="paramValue" type="java.lang.String"  > 
+		  <column name="param_Value" />
+		</property>
+		<property name="runState" type="java.lang.String"  > 
+		  <column name="run_State" />
+		</property>
+		<property name="errorMessage" type="java.lang.String"  > 
+		  <column name="error_Message" />
+		</property>
+		<property name="remark" type="java.lang.String"  > 
+		  <column name="remark" />
+		</property>
+	</class>
+	
+	<class name="BatchParam" table="ETL_batch_param">
+		<id name="uuid" type="java.lang.String" column="uuid">
+			<generator class="uuid"></generator>
+		</id>
+		
+		<property name="batchId" type="java.lang.String"  > 
+		  <column name="batch_Id" />
+		</property>
+		
+		<property name="forecastType" type="java.lang.String"  > 
+		  <column name="forecast_Type" />
+		</property>
+	
+		<property name="paramId" type="java.lang.String"  > 
+		  <column name="param_Id" />
+		</property>
+		
+		<property name="paramName" type="java.lang.String"  > 
+		  <column name="param_Name" />
+		</property>
+
+		<property name="serverId" type="java.lang.String"  > 
+		  <column name="serverId" />
+		</property>
+		<property name="paramType" type="java.lang.String"  > 
+		  <column name="param_Type" />
+		</property>
+		<property name="paramValue" type="java.lang.String"  > 
+		  <column name="param_Value" />
+		</property>
+		<property name="remark" type="java.lang.String"  > 
+		  <column name="remark" />
+		</property>
+	</class>
+</hibernate-mapping>

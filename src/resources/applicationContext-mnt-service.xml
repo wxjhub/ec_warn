@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+	
+	<!-- 系统基本配置 -->  
+	<bean id="clientConfigService" class="com.vprisk.mnt.service.impl.ClientConfigServiceImpl">
+		<property name="clientConfigDao" ref="clientConfigDao"/>
+	</bean>
+	<!-- 交易成功率配置 -->  
+	<bean id="transactionSuccessConfigService" class="com.vprisk.mnt.service.impl.TransactionSuccessConfigServiceImpl">
+		<property name="transactionSuccessConfigDao" ref="transactionSuccessConfigDao"/>
+	</bean>
+	<!-- 交易时长配置 -->  
+	<bean id="transactionTimeConfigService" class="com.vprisk.mnt.service.impl.TransactionTimeConfigServiceImpl">
+		<property name="transactionTimeConfigDao" ref="transactionTimeConfigDao"/>
+	</bean>
+	<!-- 长时间无交易配置 -->  
+	<bean id="transactionEndConfigService" class="com.vprisk.mnt.service.impl.TransactionEndConfigServiceImpl">
+		<property name="transactionEndConfigDao" ref="transactionEndConfigDao"/>
+	</bean>
+	<!-- 应用服务数配置 -->  
+	<bean id="applyProSoftConfigService" class="com.vprisk.mnt.service.impl.ApplyProSoftConfigServiceImpl">
+		<property name="applyProSoftConfigDao" ref="applyProSoftConfigDao"/>
+	</bean>
+	<!--文件配置 -->  
+	<bean id="fileConfigService" class="com.vprisk.mnt.service.impl.FileConfigServiceImpl">
+		<property name="fileConfigDao" ref="fileConfigDao"/>
+	</bean>
+	<!--日终配置 -->  
+	<bean id="dayEndConfigService" class="com.vprisk.mnt.service.impl.DayEndConfigServiceImpl">
+		<property name="dayEndConfigDao" ref="dayEndConfigDao"/>
+	</bean>
+	<!--本端配置 -->  
+	<bean id="localNetWorkConfigService" class="com.vprisk.mnt.service.impl.LocalNetWorkConfigServiceImpl">
+		<property name="localNetWorkConfigDao" ref="localNetWorkConfigDao"/>
+	</bean>
+	<!--对端配置 -->  
+	<bean id="externalNetWorkConfigService" class="com.vprisk.mnt.service.impl.ExternalNetWorkConfigServiceImpl">
+		<property name="externalNetWorkConfigDao" ref="externalNetWorkConfigDao"/>
+	</bean>
+	<!--sql配置 -->  
+	<bean id="sqlBlockConfigService" class="com.vprisk.mnt.service.impl.SqlBlockConfigServiceImpl">
+		<property name="sqlBlockConfigDao" ref="sqlBlockConfigDao"/>
+	</bean>
+	<!--表分析配置 -->  
+	<bean id="tableAnalysisConfigService" class="com.vprisk.mnt.service.impl.TableAnalysisConfigServiceImpl">
+		<property name="tableAnalysisConfigDao" ref="tableAnalysisConfigDao"/>
+	</bean>
+	
+	
+	<!-- 交易成功率 -->  
+	<bean id="transactionSuccessService" class="com.vprisk.mnt.service.impl.TransactionSuccessServiceImpl">
+		<property name="transactionSuccessDao" ref="transactionSuccessDao"/>
+	</bean>
+	
+	<bean id="transactionSuccessModelService" class="com.vprisk.mnt.service.impl.TransactionSuccessModelServiceImpl">
+		<property name="transactionSuccessModelDao" ref="transactionSuccessModelDao"/>
+	</bean>
+	<bean id="transactionTimeModelService" class="com.vprisk.mnt.service.impl.TransactionTimeModelServiceImpl">
+		<property name="transactionTimeModelDao" ref="transactionTimeModelDao"/>
+	</bean>
+	<bean id="transactionNoTradeModelService" class="com.vprisk.mnt.service.impl.TransactionNoTradeModelServiceImpl">
+		<property name="transactionNoTradeModelDao" ref="transactionNoTradeModelDao"/>
+	</bean>
+	
+	<!-- 应用程序监控 -->  
+	<bean id="applyProSoftService" class="com.vprisk.mnt.service.impl.ApplyProSoftServiceImpl">
+		<property name="applyProSoftDao" ref="applyProSoftDao"/>
+	</bean>
+	
+	<!-- 本端网络监控设置 -->  
+	<bean id="localNetWorkService" class="com.vprisk.mnt.service.impl.LocalNetWorkServiceImpl">
+		<property name="localNetWorkDao" ref="localNetWorkDao"/>
+	</bean>
+	<!-- 外端网络监控设置 -->  
+	<bean id="externalNetWorkService" class="com.vprisk.mnt.service.impl.ExternalNetWorkServiceImpl">
+		<property name="externalNetWorkDao" ref="externalNetWorkDao"/>
+	</bean>
+	
+	<!-- sql阻塞 -->
+	<bean id="sqlBlockService" class="com.vprisk.mnt.service.impl.SqlBlockServiceImpl">
+  		<property name="sqlBlockDao" ref="sqlBlockDao"/>
+	</bean>
+	<!-- 表分析-->
+	<bean id="tableAnalysisService" class="com.vprisk.mnt.service.impl.TableAnalysisServiceImpl">
+  		<property name="tableAnalysisDao" ref="tableAnalysisDao"/> 
+	</bean>
+	<!-- 文件传输监控 -->  
+	<bean id="fileTransmissionService" class="com.vprisk.mnt.service.impl.FileTransmissionServiceImpl">
+		<property name="fileTransmissionDao" ref="fileTransmissionDao"/>
+	</bean>
+	
+	<!-- 关联系统LIST文件查询 -->  
+	<bean id="fileListCheckService" class="com.vprisk.mnt.service.impl.FileListCheckServiceImpl">
+		<property name="fileListCheckDao" ref="fileListCheckDao"/>
+	</bean>
+	
+		<!--日终监控-->
+	<bean id="dayEndMonitorService" class="com.vprisk.mnt.service.impl.DayEndMonitorServiceImpl">
+  		<property name="dayEndMonitorDao" ref="dayEndMonitorDao"/>
+  		<property name="warnBatchConfigDao" ref="warnBatchConfigDao"/> 
+	</bean>
+	
+	<!-- 当前历史预警信息设置 -->  
+	<bean id="warnHistoryService" class="com.vprisk.mnt.service.impl.WarnHistoryServiceImpl">
+		<property name="warnHistoryDao" ref="warnHistoryDao"/>
+	</bean>
+	
+	<!-- 预警时间间隔设置 -->  
+	<bean id="warnIntervalService" class="com.vprisk.mnt.service.impl.WarnIntervalServiceImpl">
+		<property name="warnIntervalDao" ref="warnIntervalDao"/>
+	</bean>
+	<!-- 文件记录 -->  
+	<bean id="fileWarnService" class="com.vprisk.mnt.service.impl.FileWarnServiceImpl">
+		<property name="fileWarnDao" ref="fileWarnDao"/>
+	</bean>
+	<!-- 短信 --> 
+	<bean id="bookParamService" class="com.vprisk.mnt.service.impl.BookParamServiceImpl">
+		<property name="bookParamDao" ref="bookParamDao"/>
+	</bean>
+	<!-- 短信 --> 
+	<bean id="userinfoService" class="com.vprisk.mnt.sms.service.impl.UserinfoServiceImpl">
+		<property name="userinfoDao" ref="userinfoDao"/>
+	</bean>
+	<!-- 预警告警配置--> 
+	<bean id="warnModuleConfigService" class=" com.vprisk.mnt.service.impl.WarnModuleConfigServiceImpl">
+		<property name="warnModuleConfigDao" ref="warnModuleConfigDao"/>
+	</bean>
+	<!-- 跑批预警告警配置--> 
+	<bean id="warnBatchConfigService" class=" com.vprisk.mnt.service.impl.WarnBatchConfigServiceImpl">
+		<property name="warnBatchConfigDao" ref="warnBatchConfigDao"/>
+	</bean>
+	<bean id="warnBatchHisTaskLogService" class=" com.vprisk.mnt.service.impl.WarnBatchHisTaskLogServiceImpl">
+		<property name="warnBatchConfigDao" ref="warnBatchConfigDao"/>
+		<property name="warnBatchHisTaskLogDao" ref="warnBatchHisTaskLogDao"/>
+	</bean>
+	<bean id="warnBatchService" class=" com.vprisk.mnt.service.impl.WarnBatchServiceImpl">
+	     <property name="warnModuleConfigService" ref="warnModuleConfigService"/>
+	     <property name="warnBatchHisTaskLogDao" ref="warnBatchHisTaskLogDao"/>
+	     <property name="warnBatchDao" ref="warnBatchDao"/>
+	     <property name="warnBatchConfigDao" ref="warnBatchConfigDao"/>
+	     <property name="warnHistoryDao" ref="warnHistoryDao"/>
+	</bean>
+	<!-- 交易成功率显示--> 
+	<bean id="btnTranStranSucessService" class=" com.vprisk.mnt.service.impl.BtnTranStranSucessServiceImpl">
+		<property name="btnTranStranSucessDao" ref="btnTranStranSucessDao"/>
+	</bean>
+	<!-- 交易成功率配置--> 
+	<bean id="btnSucessConfigService" class=" com.vprisk.mnt.service.impl.BtnSucessConfigServiceImpl">
+		<property name="btnSucessConfigDao" ref="btnSucessConfigDao"/>
+	</bean>
+</beans>

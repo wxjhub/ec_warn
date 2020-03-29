@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+/*该样式主要应用于标签库
+*/
+
+/*设置项目默认字体、大小（微软雅黑字体、12像素）*/
+body{
+	font-size:12px; 
+	font-family:'Microsoft YaHei';
+}
+
+/*button组件默认的样式*/
+.inputd{
+	border:0;
+	background:#fff url(../images/btnimg.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #c7c7c7 solid 1px;
+}
+/*鼠标经过button时的样式*/
+.inputd:hover{
+	border:0;
+	background:#fff url(../images/btnimg2.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#000;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #79beca solid 1px;
+}
+
+/*text组件默认样式*/
+.input_eq2{
+	width:150px;   
+	border:#CCC solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	padding: 0 2px 0 2px;
+	width: 150px;
+	line-height: 20px;
+}
+/*鼠标经过text组件时的样式*/
+.input_eq2:HOVER{
+	width:150px;   
+	border:#8DB2E3 solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;
+}
+/*text组件获取焦点时的样式（该样式支持IE8以上版本浏览器）*/
+.input_eq2:FOCUS{
+	width:150px;   
+	border:#8DB2E3 solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;}

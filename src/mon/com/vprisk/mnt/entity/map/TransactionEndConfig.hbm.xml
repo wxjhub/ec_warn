@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.TransactionEndConfig" table="MNT_TRANSACTION_END_CONFIG">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="sysName" type="java.lang.String" column="SYS_NAME"></property>
+		<property name="sysCode" type="java.lang.String" column="SYS_CODE"></property>
+		<property name="transactionDay" type="java.lang.String" column="TRANSACTION_DAY"></property>
+		<property name="noTransactionDay" type="java.lang.String" column="NO_TRANSACTION_DAY"></property>
+		<property name="transactionTime" type="java.lang.String" column="TRANSACTION_TIME"></property>
+		<property name="noTransactionTime" type="java.lang.String" column="NO_TRANSACTION_TIME"></property>
+		<property name="sysFreeTime" type="java.lang.String" column="SYS_FREE_TIME"></property>
+		<property name="sysBusyTime" type="java.lang.String" column="SYS_BUSY_TIME"></property>
+		<property name="noTransactionTimeValuesY" type="java.lang.Integer" column="NO_TRANSACTION_TIME_VALUES_Y"></property>
+		<property name="noTransactionTimeValuesG" type="java.lang.Integer" column="NO_TRANSACTION_TIME_VALUES_G"></property>
+		<property name="warningLevl" type="java.lang.Integer" column="WARNING_LEVL"></property>
+		<property name="col1" type="java.lang.String" column="COL1"></property>
+		<property name="col2" type="java.lang.String" column="COL2"></property>
+		<property name="col3" type="java.lang.String" column="COL3"></property>
+		
+	</class>
+</hibernate-mapping>

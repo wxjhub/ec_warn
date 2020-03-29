@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.BookParam" table="MNT_WARN_BOOK_PARAM_VALUE">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="bookName" type="java.lang.String" column="BOOK_NAME"></property>
+		<property name="bookTele" type="java.lang.String" column="BOOK_TELE"></property>
+		<property name="bookWarnLvl" type="java.lang.Integer" column="BOOK_WARN_LVL"></property>
+		<property name="bookValues" type="java.lang.String" column="BOOK_VALUES"></property>
+		<property name="warnSort" type="java.lang.String" column="WARN_SORT"></property>
+		<property name="startTime" type="java.lang.Integer" column="START_TIME"></property>
+		<property name="endTime" type="java.lang.Integer" column="END_TIME"></property>
+		
+	</class>
+</hibernate-mapping>

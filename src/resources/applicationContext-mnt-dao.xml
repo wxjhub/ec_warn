@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+	<!-- 系统基本配置 --> 
+	<bean id="clientConfigDao" class="com.vprisk.mnt.dao.impl.ClientConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 交易成功率配置 --> 
+	<bean id="transactionSuccessConfigDao" class="com.vprisk.mnt.dao.impl.TransactionSuccessConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 交易时长配置 --> 
+	<bean id="transactionTimeConfigDao" class="com.vprisk.mnt.dao.impl.TransactionTimeConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 长时间无交易配置 --> 
+	<bean id="transactionEndConfigDao" class="com.vprisk.mnt.dao.impl.TransactionEndConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 应用服务数配置 --> 
+	<bean id="applyProSoftConfigDao" class="com.vprisk.mnt.dao.impl.ApplyProSoftConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 文件配置 --> 
+	<bean id="fileConfigDao" class="com.vprisk.mnt.dao.impl.FileConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 文件配置 --> 
+	<bean id="dayEndConfigDao" class="com.vprisk.mnt.dao.impl.DayEndConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 本端配置 --> 
+	<bean id="localNetWorkConfigDao" class="com.vprisk.mnt.dao.impl.LocalNetWorkConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 对端配置 --> 
+	<bean id="externalNetWorkConfigDao" class="com.vprisk.mnt.dao.impl.ExternalNetWorkConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- sql配置 --> 
+	<bean id="sqlBlockConfigDao" class="com.vprisk.mnt.dao.impl.SqlBlockConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 表分析配置 --> 
+	<bean id="tableAnalysisConfigDao" class="com.vprisk.mnt.dao.impl.TableAnalysisConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 交易成功率 --> 
+	<bean id="transactionSuccessDao" class="com.vprisk.mnt.dao.impl.TransactionSuccessDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="transactionSuccessModelDao" class="com.vprisk.mnt.dao.impl.TransactionSuccessModelDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="transactionTimeModelDao" class="com.vprisk.mnt.dao.impl.TransactionTimeModelDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="transactionNoTradeModelDao" class="com.vprisk.mnt.dao.impl.TransactionNoTradeModelDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+		<!-- 应用程序监控 --> 
+	<bean id="applyProSoftDao" class="com.vprisk.mnt.dao.impl.ApplyProSoftDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 本端网络监控设置 -->
+	<bean id="localNetWorkDao" class="com.vprisk.mnt.dao.impl.LocalNetWorkDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 外端网络监控设置 -->
+	<bean id="externalNetWorkDao" class="com.vprisk.mnt.dao.impl.ExternalNetWorkDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- sql阻塞 -->
+	<bean id="sqlBlockDao" class="com.vprisk.mnt.dao.impl.SqlBlockDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 表分析 -->
+		<bean id="tableAnalysisDao" class="com.vprisk.mnt.dao.impl.TableAnalysisDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 文件传输监控 -->
+	<bean id="fileTransmissionDao" class="com.vprisk.mnt.dao.impl.FileTransmissionDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 关联系统LIST文件查询 -->
+	<bean id="fileListCheckDao" class="com.vprisk.mnt.dao.impl.FileListCheckDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+		<!-- 日终 -->
+	<bean id="dayEndMonitorDao" class="com.vprisk.mnt.dao.impl.DayEndMonitorDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+		<!-- 报警历史查询 -->
+	<bean id="warnHistoryDao" class="com.vprisk.mnt.dao.impl.WarnHistoryDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 预警时间间隔设置 -->
+	<bean id="warnIntervalDao" class="com.vprisk.mnt.dao.impl.WarnIntervalDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+		<!-- 文件记录 -->
+	<bean id="fileWarnDao" class="com.vprisk.mnt.dao.impl.FileWarnDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+		<!-- 短信 -->
+	<bean id="bookParamDao" class="com.vprisk.mnt.dao.impl.BookParamDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 短信测试-->
+	<bean id="userinfoDao" class="com.vprisk.mnt.sms.dao.impl.UserinfoDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 预警告警配置-->
+	<bean id="warnModuleConfigDao" class="com.vprisk.mnt.dao.impl.WarnModuleConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 跑批预警告警配置-->
+	<bean id="warnBatchConfigDao" class="com.vprisk.mnt.dao.impl.WarnBatchConfigDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 跑批预警日志-->
+	<bean id="warnBatchHisTaskLogDao" class="com.vprisk.mnt.dao.impl.WarnBatchHisTaskLogDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="warnBatchDao" class="com.vprisk.mnt.dao.impl.WarnBatchDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 交易成功率显示-->
+	<bean id="btnTranStranSucessDao" class="com.vprisk.mnt.dao.impl.BtnTranStranSucessDaoImpl">
+	     <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 交易成功率配置-->
+	<bean id="btnSucessConfigDao" class="com.vprisk.mnt.dao.impl.BtnSucessConfigDaoImpl">
+	     <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="btnRespTimeLogDao" class="com.vprisk.mnt.dao.impl.BtnRespTimeLogDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+  	<bean id="btnRespTimeInfoDao" class="com.vprisk.mnt.dao.impl.BtnRespTimeInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

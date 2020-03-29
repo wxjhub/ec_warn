@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.WarnModuleConfig" table="MNT_WARN_MODULE_CONFIG">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="warnModuleCode" type="java.lang.String" column="WARN_MODULE_CODE"></property>
+		<property name="warnLevl" type="java.lang.Integer" column="WARN_LEVL"></property>
+		<property name="warnNum" type="java.lang.String" column="WARN_NUM"></property>
+		<property name="warnRoundTimeS" type="java.lang.String" column="WARN_ROUND_TIME_S"></property>
+		<property name="warnDatadateScope" type="java.lang.String" column="WARN_DATADATE_SCOPE"></property>
+		<property name="col1" type="java.lang.String" column="COL1"></property>
+		<property name="col2" type="java.lang.String" column="COL2"></property>
+		<property name="col3" type="java.lang.String" column="COL3"></property>
+	</class>
+</hibernate-mapping>

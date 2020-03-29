@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+  <bean id="batchDao" class="com.vprisk.etl.dao.impl.BatchDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="operationHisLogDao" class="com.vprisk.etl.dao.impl.OperationHisLogDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="processBatchDao" class="com.vprisk.etl.dao.impl.ProcessBatchDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="processDao" class="com.vprisk.etl.dao.impl.ProcessDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="processRelationDao" class="com.vprisk.etl.dao.impl.ProcessRelationDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="processStatusDao" class="com.vprisk.etl.dao.impl.ProcessStatusDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="serverDao" class="com.vprisk.etl.dao.impl.ServerDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="taskDao" class="com.vprisk.etl.dao.impl.TaskDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/>  
+    <property name="taskTypeDao" ref="taskTypeDao"/> 
+  </bean>  
+  <bean id="taskHisDetailInfoDao" class="com.vprisk.etl.dao.impl.TaskHisDetailInfoDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="taskProcessDao" class="com.vprisk.etl.dao.impl.TaskProcessDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="taskRelationDao" class="com.vprisk.etl.dao.impl.TaskRelationDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="taskStatusDao" class="com.vprisk.etl.dao.impl.TaskStatusDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="taskTypeDao" class="com.vprisk.etl.dao.impl.TaskTypeDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  <bean id="parameterCommonDao" class="com.vprisk.etl.dao.impl.ParameterCommonDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  
+  
+  <bean id="schedulerParamDao" class="com.vprisk.etl.dao.impl.SchedulerParamDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>
+
+  <bean id="processHisDetaiInfoDao" class="com.vprisk.etl.dao.impl.ProcessHisDetaiInfoDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>
+  <bean id="batchHisDetailInfoDao" class="com.vprisk.etl.dao.impl.BatchHisDetailInfoDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  
+   <bean id="batchParamDao" class="com.vprisk.etl.dao.impl.BatchParamDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean>  
+  
+   <bean id="batchStatusDao" class="com.vprisk.etl.dao.impl.BatchStatusDaoImpl"> 
+    <property name="sessionFactory" ref="sessionFactory"/> 
+  </bean> 
+</beans>

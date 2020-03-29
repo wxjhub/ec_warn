@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"> 
+
+	<bean id="DS-DM" parent="parentDataSource">  
+		<!--<property name="url" value="jdbc:oracle:thin:@20.13.2.45:1521:orcl"/>-->
+		<property name="url" value="jdbc:oracle:thin:@20.0.4.12:1521:DMDB"/>
+		<property name="username" value="dm_vpdm"/>
+		<property name="password" value="/3S1tJA2sC0="/>	
+	</bean> 
+    <!-- <bean id="FTPADMIN" parent="parentDataSource">  
+		<property name="url" value="jdbc:oracle:thin:@20.5.140.226:1521:orcl"/>
+		<property name="username" value="rpm7"/>
+		<property name="password" value="iLjxD1OjuXU="/>	
+	</bean>  -->
+   
+</beans>

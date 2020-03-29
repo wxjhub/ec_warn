@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">  
+	<!-- core.jar中相关文件 -->
+    <import resource="classpath*:applicationContext-core.xml"/>
+	<!-- security.jar中相关文件 -->
+	<import resource="classpath*:applicationContext-springSecurity.xml"/>
+	<import resource="classpath*:applicationContext-security2.0.xml"/>
+	<import resource="classpath*:applicationContext-ldap.xml"/> 
+	<!-- metadata.jar中相关文件 -->
+<!-- 	<import resource="classpath*:applicationContext-metadata.xml"/> -->
+	<!--主项目中文件resource文件--> 
+	<!-- <import resource="classpath*:applicationContext-etl-dao.xml"/>
+	<import resource="classpath*:applicationContext-etl-service.xml"/> -->
+	<!-- 数据库密码加密使用的配置
+	如果不需要加密，请将 com.vprisk.rmplatform.util.EncryptPropertyPlaceholderConfigurer 修改为
+	org.springframework.beans.factory.config.PropertyPlaceholderConfigurer-->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:sysconfig.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置DataSource-->
+	<bean id="parentDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	 	<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="validationQuery" >
+       		<value>
+       			${jdbc.validationQuery}
+       		</value> 
+        </property>
+	</bean> 
+	
+	<bean id="defaultDataSource" parent="parentDataSource">  
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>		 
+    </bean>  
+    
+	<bean id="dataSource" class="com.vprisk.rmplatform.dao.support.MultiDataSource">  
+        <property name="dataSource">  
+            <ref bean="defaultDataSource" />  
+        </property>  
+    </bean>   
+	
+	<aop:config>  
+        <aop:aspect id="dynamicDataSourceAOP" ref="dynamicDataSourceAspect">  
+            <!--配置com.spring.service包下所有类或接口的所有方法-->  
+            <aop:pointcut id="businessService"  
+             	expression="(execution(* com.vprisk.rmplatform.security.service.impl.*.*(..)) 
+            or execution(* com.vprisk.etl.service.impl.*.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.datadict.service.impl.*.*(..))  
+            or execution(* com.vprisk.rmplatform.components.log.service.impl.OperationLogServiceImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.dao.impl.DataTemplateImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.trans.query.QueryTransEngineDom4jImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.metadata.MetadataServiceHibernateImpl.*(..))
+            )" /> 
+            <aop:before pointcut-ref="businessService" method="doBefore"/>  
+            <aop:after pointcut-ref="businessService" method="doAfter"/>  
+        </aop:aspect>  
+    </aop:config> 
+    
+    <bean id="dynamicDataSourceAspect" class="com.vprisk.rmplatform.dao.support.DynamicDataSourceAspect"/> 
+	<!-- 配置DataSource
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+		<property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="validationQuery" >
+       		<value>
+       			${jdbc.validationQuery}
+       		</value> 
+        </property>
+	</bean> -->
+	
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<!--
+				<prop key="hibernate.connectionReleaseMode">auto</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+				<prop key="hibernate.proxool.existing_pool">false</prop> 
+				-->
+			</props>
+		</property>
+
+		<property name="mappingResources">
+			<list>
+			    <!--数据字典 -->
+ 		  	   <value>dict.hbm.xml</value> 
+				<!-- 安全框架 通用功能: security2.0.hbm.xml-->
+			      <value>security2.0.hbm.xml</value>
+				<value>security2.0-ftp.hbm.xml</value> 
+				 <value>security2.0-orm.hbm.xml</value> 
+		</list>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>${hibernate.mappingDirectoryLocations}</value>
+			</list>
+		</property>
+		
+	</bean> 
+
+
+	<!-- JdbcTemplate 配置 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource"></ref>
+		</property>
+	</bean>
+
+	<!--事务管理器-->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<!--<aop:config>  
+        <aop:aspect id="dynamicDataSourceAOP" ref="dynamicDataSourceAspect">  
+            配置com.spring.service包下所有类或接口的所有方法  
+            <aop:pointcut id="businessService"  
+             	expression="(execution(* com.vprisk..service.impl.*.*(..)) 
+            or execution(* com.vprisk.rmplatform.dao.impl.DataTemplateImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.trans.query.QueryTransEngineDom4jImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.metadata.MetadataServiceHibernateImpl.*(..)) 
+            )" /> 
+            <aop:before pointcut-ref="businessService" method="doBefore"/>  
+            <aop:after pointcut-ref="businessService" method="doAfter"/>  
+        </aop:aspect>  
+    </aop:config> 
+    
+    <bean id="dynamicDataSourceAspect" class="com.vprisk.rmplatform.dao.support.DynamicDataSourceAspect"/> 	-->
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="fetch*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="is*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="query*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="export*" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="modify*" propagation="REQUIRED"/>
+			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="synchro*" propagation="REQUIRED"/>
+			<tx:method name="remove*" propagation="REQUIRED"/>
+			<tx:method name="import*" propagation="REQUIRED"/>
+			<tx:method name="export*" propagation="REQUIRED"/>
+			<tx:method name="init*" propagation="REQUIRED"/>
+			<tx:method name="backup*" propagation="REQUIRED"/>
+			<tx:method name="audit*" propagation="REQUIRED"/>
+            <tx:method name="pass*" propagation="REQUIRED"/>
+            <tx:method name="submit*" propagation="REQUIRED"/>
+            <tx:method name="post*" propagation="REQUIRED"/>
+            <tx:method name="input*" propagation="REQUIRED"/>
+            <tx:method name="export*" propagation="REQUIRED"/>
+            <tx:method name="invoke*" propagation="REQUIRED"/>
+            <tx:method name="check*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="start*" propagation="REQUIRED"/>
+
+        </tx:attributes>
+    </tx:advice>
+   
+    <aop:config>
+        <aop:pointcut id="interceptorPointCuts"
+            expression="(execution(* com.vprisk..service.impl.*.*(..)) 
+            or execution(* com.vprisk.rmplatform.dao.impl.DataTemplateImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.trans.query.QueryTransEngineDom4jImpl.*(..)) 
+            or execution(* com.vprisk.rmplatform.components.impl.metadata.MetadataServiceHibernateImpl.*(..)) 
+            )" />
+        <aop:advisor advice-ref="txAdvice"
+            pointcut-ref="interceptorPointCuts" />       
+    </aop:config>      
+
+	
+	<!-- sqlMapClient 配置-->
+<!-- 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocations">
+			sql map配置文件的入口文件，如果添加了一个sqlmap文件，只要在下面的入口文件中加入相应的选项即可
+			<value>classpath*:ibatisMap-config.xml</value>
+		</property>
+		<property name="dataSource">
+			<ref bean="dataSource"></ref>
+		</property>
+	</bean> -->
+	
+	<!-- 自定义ibatis SQL执行器 -->
+ <!--    <bean id="sqlExecutor" class="com.vprisk.rmplatform.dao.ibatis.orm.IBatisSqlExecutor">
+        设置数据库方言
+        <property name="dialect">
+            <bean class="com.vprisk.rmplatform.dao.ibatis.orm.impl.OracleDialect" />
+        </property>
+    </bean> -->
+    
+    <!-- 自定义ibatisDaoSupport，指定init-method方法 -->
+<!--     <bean id="ibatisDaoSupport" abstract="true" class="com.vprisk.rmplatform.dao.ibatis.IbatisDaoSupport" init-method="initialize">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+        <property name="sqlMapClient">
+            <ref bean="sqlMapClient" />
+        </property>
+        <property name="sqlExecutor">
+            <ref bean="sqlExecutor" />
+        </property> 
+    </bean>  -->
+    
+    
+    	<!-- 封装持久层基础类 -->
+<!-- 	<bean id="dataTemplate" class="com.vprisk.rmplatform.dao.impl.DataTemplateImpl" parent="ibatisDaoSupport">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean> -->
+	
+	<!-- javaMelody 监控spring的Bean
+	<bean id="facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+	    <property name="pointcut">
+	        <bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+	            <property name="patterns">
+                    <value>com\.vprisk\.rmplatform\.security\.service\.impl\..*</value>
+	            </property>
+	        </bean>
+	    </property>
+	</bean>-->
+	
+</beans>

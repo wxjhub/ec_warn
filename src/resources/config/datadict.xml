@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数据字典（存储集合列表的key值，考虑到平台应支持国际化，故其value配置到WEB-INF/config/msg/datadict_zh_CN.properties中，如： 
+	#生效标志数据字段 sys.validFlag.1=生效 sys.validFlag.0=失效 sys.validFlag.-1=被修改 sys.validFlag.2=新导入 
+	sys.validFlag.-2=过期 其中最后一个点前面的字符串即为dictId。 主要为下拉列表提供数据，可存储程序状态标志(如男女，是否，草稿、生效、删除、审批中、待修改)和业务数据，避免重复DB访问） 
+	规范：dictId必须至少含2个层级，第一个单词代表功能模块的缩写 -->
+<datadict>
+
+	<!--*** *** *** 安全框架的数据字典*** *** *** -->
+	<list dictId="sys.boolean" dictName="是否字典">
+		<param>0</param>
+		<param>1</param>
+	</list>
+
+	<list dictId="sys.validFlag" dictName="生效标志">
+		<param>1</param>
+		<param>-1</param>
+		<param>0</param>
+		<param>2</param>
+		<param>-2</param>
+	</list>
+
+	<list dictId="sys.paramFlag" dictName="补录记录状态">
+		<param>1</param>
+		<param>0</param>
+		<param>2</param>
+	</list>
+
+	<list dictId="sys.deployFlag" dictName="是否已发布">
+		<param>1</param>
+		<param>0</param>
+	</list>
+	<list dictId="lrms.boolean" dictName="是否补录">
+		<param>0</param>
+		<param>1</param>
+	</list>
+	<list dictId="lrms.org" dictName="是否补录">
+		<param>0000</param>
+		<param>1111</param>
+		<param>9999</param>
+	</list>
+	<list dictId="lrms.tablename" dictName="补录表名称">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+	</list>
+	<list dictId="lrms.currency" dictName="币种">
+		<param>CNY</param>
+		<param>USD</param>
+		<param>HKD</param>
+		<param>EUR</param>
+		<param>QTUSD</param>
+		<param>SYUSD</param>
+		<param>TOTAL</param>
+	</list>
+	<list dictId="lrms.paramName" dictName="静态现金流参数名称">
+		<param>1001</param>
+		<param>1002</param>
+		<param>1003</param>
+		<param>1004</param>
+		<param>1005</param>
+		<param>1006</param>
+		<param>1009</param>
+		<param>1011</param>
+		<param>1012</param>
+		<param>1013</param>
+		<param>1014</param>
+		<param>1016</param>
+		<param>1017</param>
+		<param>1018</param>
+		<param>1019</param>
+		<param>1020</param>
+		<param>1023</param>
+		<param>1024</param>
+		<param>1026</param>
+	</list>
+	<list dictId="lrms.limitTime" dictName="静态现金流期限">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+	</list>
+	<list dictId="lrms.dyna.paramName" dictName="动态现金流参数名称">
+		<param>1401</param>
+		<param>17</param>
+		<param>05</param>
+		<param>10</param>
+		<param>22</param>
+		<param>25</param>
+	</list>
+	<list dictId="lrms.targetName" dictName="指标名称">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>12</param>
+		<param>13</param>
+		<param>14</param>
+		<param>15</param>
+		<param>16</param>
+	</list>
+	<list dictId="sys.mon" dictName="检测状态">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+	</list>
+	<list dictId="lrms.target.name" dictName="流动性指标">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>12</param>
+		<param>13</param>
+		<param>14</param>
+		<param>15</param>
+		<param>16</param>
+	</list>
+	<list dictId="lrms.target.type" dictName="流动性指标类型">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+	</list>
+	<list dictId="lrms.g25.paramName" dictName="生效标志">
+		<param>1001</param>
+		<param>1002</param>
+		<param>1003</param>
+		<param>1004</param>
+	</list>
+	<list dictId="lrms.ldx.paramName" dictName="流动性则算率">
+		<param>3</param>
+		<param>4</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>12</param>
+		<param>14</param>
+		<param>15</param>
+		<param>17</param>
+		<param>18</param>
+		<param>19</param>
+		<param>20</param>
+		<param>21</param>
+		<param>26</param>
+		<param>27</param>
+		<param>28</param>
+		<param>31</param>
+		<param>32</param>
+		<param>33</param>
+		<param>35</param>
+		<param>36</param>
+		<param>37</param>
+		<param>39</param>
+		<param>40</param>
+		<param>41</param>
+		<param>42</param>
+		<param>44</param>
+		<param>45</param>
+		<param>46</param>
+		<param>47</param>
+		<param>48</param>
+		<param>50</param>
+		<param>52</param>
+		<param>55</param>
+		<param>57</param>
+		<param>60</param>
+		<param>61</param>
+		<param>63</param>
+		<param>64</param>
+		<param>65</param>
+		<param>67</param>
+		<param>68</param>
+		<param>71</param>
+		<param>73</param>
+		<param>74</param>
+		<param>76</param>
+		<param>77</param>
+		<param>78</param>
+		<param>80</param>
+		<param>83</param>
+		<param>84</param>
+		<param>85</param>
+		<param>86</param>
+		<param>87</param>
+		<param>89</param>
+		<param>90</param>
+		<param>94</param>
+		<param>96</param>
+		<param>98</param>
+		<param>101</param>
+		<param>103</param>
+		<param>105</param>
+		<param>108</param>
+		<param>110</param>
+		<param>112</param>
+		<param>115</param>
+		<param>116</param>
+		<param>117</param>
+		<param>119</param>
+		<param>120</param>
+		<param>121</param>
+		<param>122</param>
+		<param>124</param>
+		<param>125</param>
+	</list>
+	<list dictId="lrms.zsl.paramName" dictName="稳定资金则算率">
+		<param>2</param>
+		<param>4</param>
+		<param>6</param>
+		<param>7</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>13</param>
+		<param>15</param>
+		<param>17</param>
+		<param>18</param>
+		<param>20</param>
+		<param>22</param>
+		<param>23</param>
+		<param>24</param>
+		<param>26</param>
+		<param>27</param>
+		<param>29</param>
+		<param>30</param>
+		<param>31</param>
+		<param>32</param>
+		<param>35</param>
+		<param>36</param>
+		<param>37</param>
+		<param>39</param>
+		<param>40</param>
+	</list>
+	<list dictId="sys.pageResType" dictName="页面元素资源类型">
+		<param>create</param>
+		<param>modify</param>
+		<param>remove</param>
+		<param>query</param>
+		<param>export</param>
+		<param>import</param>
+		<param>other</param>
+	</list>
+
+	<list dictId="sys.resType" dictName="资源类型">
+		<param>pageElement</param>
+		<param>URL</param>
+	</list>
+
+	<list dictId="sys.resourceType.edit" dictName="可编辑资源类型">
+		<param>PAGE_ELEMENT</param>
+		<param>URL</param>
+	</list>
+
+	<list dictId="sys.pageEleType" dictName="页面资源类型">
+		<param>add</param>
+		<param>remove</param>
+		<param>modify</param>
+		<param>export</param>
+		<param>import</param>
+		<param>other</param>
+	</list>
+
+	<list dictId="sys.externalFlag" dictName="是否外部链接">
+		<param>1</param>
+		<param>0</param>
+	</list>
+
+	<list dictId="sys.bizLog.transType" dictName="操作类型">
+		<param>C</param>
+		<param>R</param>
+		<param>U</param>
+		<param>D</param>
+		<param>S</param>
+		<param>A</param>
+	</list>
+
+	<list dictId="sys.role.roleType" dictName="用户角色类型">
+		<param>0</param>
+		<param>1</param>
+	</list>
+
+	<list dictId="sys.userFlg" dictName="启用锁定状态">
+		<param>1</param><!-- 启用 -->
+		<param>0</param><!-- 锁定 -->
+	</list>
+
+	<list dictId="roleType" dictName="是否报表角色">
+		<param>0</param><!-- 是 -->
+		<param>1</param><!-- 否 -->
+	</list>
+
+	<list dictId="sys.role.adm" dictName="是否系统角色">
+		<param>0</param><!-- 是 -->
+		<param>1</param><!-- 否 -->
+		<param>2</param>
+	</list>
+
+	<list dictId="auditLog" dictName="是否审计日志">
+		<param>1</param><!-- 启用 -->
+		<param>0</param><!-- 撤销 -->
+	</list>
+
+	<list dictId="sys.org.orgLevel" dictName="层级机构">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+	</list>
+	<list dictId="parentOrg" dictName="上级机构号">
+		<param>0</param><!-- 总行 -->
+		<param>1</param><!-- 分行 -->
+		<param>2</param><!-- 支行 -->
+	</list>
+
+	<list dictId="leafFlg" dictName="是否是叶子">
+		<param>0</param><!-- 否 -->
+		<param>1</param><!-- 是 -->
+	</list>
+	<list dictId="orgLevel" dictName="机构的等级">
+		<param>0</param><!--总行 -->
+		<param>1</param><!-- 分行 -->
+		<param>2</param><!-- 支行 -->
+	</list>
+
+	<list dictId="parentOrgan" dictName="机构的等级">
+		<param>0</param><!-- 否 -->
+		<param>1</param><!-- 是 -->
+	</list>
+
+	<list dictId="sys.isLDAP" dictName="是否同步到LDAP">
+		<param>1</param>
+		<param>0</param>
+	</list>
+	<list dictId="sys.pageSize" dictName="设置每页显示条数">
+		<param>5</param>
+		<param>10</param>
+		<param>15</param>
+		<param>20</param>
+	</list>
+	<list dictId="sys.menu.menuType" dictName="菜单类型">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+	</list>
+	<list dictId="sys.menu.shortCut" dictName="是否设置快捷">
+		<param>0</param>
+		<param>1</param>
+	</list>
+	<list dictId="sys.menu.openFlg" dictName="菜单是否展开">
+		<param>0</param>
+		<param>1</param>
+	</list>
+	<list dictId="sys.menu.leafFlg" dictName="是否叶子菜单">
+		<param>0</param>
+		<param>1</param>
+	</list>
+	<list dictId="sys.menu.logFlg" dictName="是否记录日志">
+		<param>0</param>
+		<param>1</param>
+	</list>
+
+	<list dictId="sys.project.projectType" dictName="菜单类型">
+		<param>0</param>
+		<param>1</param>
+	</list>
+
+	<list dictId="sys.project.syncFlag" dictName="开启同步">
+		<param>Y</param>
+		<param>N</param>
+	</list>
+
+	<!-- *** *** *** 元数据平台字典*** *** *** -->
+	<list dictId="meta.field.viewType" dictName="元数据字段视图类型">
+		<param>text</param>
+		<param>select</param>
+		<param>hidden</param>
+		<param>date</param>
+		<param>datetime</param>
+		<param>flag</param>
+		<param>popTree</param>
+		<param>popLazyTree</param>
+		<param>textArea</param>
+	</list>
+	<!--<param>autoSelect</param> <param>comboTree</param> <param>popSelect</param> -->
+
+	<list dictId="meta.queryField.viewType" dictName="查询条件视图类型">
+		<param>text</param>
+		<param>select</param>
+		<param>hidden</param>
+		<param>date</param>
+		<param>datetime</param>
+		<param>flag</param>
+		<param>popTree</param>
+		<param>popLazyTree</param>
+	</list>
+
+	<list dictId="meta.listField.viewType" dictName="可编辑查询结果视图类型">
+		<param>text</param>
+		<param>select</param>
+		<param>date</param>
+		<param>datetime</param>
+		<param>flag</param>
+		<param>popTree</param>
+		<param>popLazyTree</param>
+	</list>
+
+	<list dictId="meta.refType" dictName="元数据字段关联类型">
+		<param>1</param>
+		<param>2</param><!-- 放在前面的默认，默认值咋办，标签加个default属性 -->
+	</list>
+
+	<list dictId="meta.queryTrans.Types" dictName="查询交易的子类型">
+		<param>QUERY</param>
+		<param>EDIT_QUERY</param>
+		<!--<param>EXACT_QUERY</param> -->
+	</list>
+
+	<list dictId="meta.field.validator" dictName="元数据字段验证方式">
+		<param>data</param>
+		<param>currency</param>
+		<param>date</param>
+	</list>
+
+	<list dictId="meta.field.queryMode" dictName="平台字段查询模式">
+		<param>EXACT</param>
+		<param>START</param>
+		<param>ANYWHERE</param>
+		<param>END</param>
+		<param>BETWEEN</param>
+	</list>
+
+	<list dictId="meta.bizKey" dictName="是否业务主键字典">
+		<param>1</param>
+		<param>0</param>
+	</list>
+
+	<list dictId="meta.updateFlag" dictName="是否可修改">
+		<param>1</param>
+		<param>0</param>
+	</list>
+
+	<list dictId="meta.autoFlag" dictName="是否自动生成">
+		<param>0</param>
+		<param>1</param>
+	</list>
+
+	<list dictId="meta.autogenType" dictName="系统自动生成类型">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+	</list>
+
+	<list dictId="meta.viewOrderFlag" dictName="排序模式">
+		<param>asc</param>
+		<param>desc</param>
+	</list>
+
+	<list dictId="meta.refModelOrderProp" dictName="关联模型排序">
+		<param>asc</param>
+		<param>desc</param>
+	</list>
+
+	<list dictId="meta.pkGenMode" dictName="主键生成策略">
+		<param>uuid</param>
+		<param>sequence</param>
+		<param>identity</param>
+		<param>assign</param>
+	</list>
+
+	<list dictId="meta.defaultFilterMode" dictName="默认过滤方式">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+	</list>
+
+	<!-- *** *** *** ETL调度元数据*** *** *** -->
+	<list dictId="etl.script.type" dictName="脚本类型">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+	</list>
+
+	<list dictId="etl.task.runflag" dictName="运行状态">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>-1</param>
+		<param>3</param>
+	</list>
+	<!-- 预处理状态 修改，增加4代表预处理状态 add by weijiang -->
+	<list dictId="etl.batch.runflag" dictName="批次运行状态">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>-1</param>
+		<param>3</param>
+		<param>4</param>
+	</list>
+
+	<list dictId="etl.process.runflag" dictName="任务组运行状态">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>-1</param>
+	</list>
+
+	<list dictId="etl.runflag" dictName="日志运行状态">
+		<param>2</param>
+		<param>-1</param>
+	</list>
+	<list dictId="etl.process.freq" dictName="过程组运行频率">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+	</list>
+
+	<list dictId="etl.taskType" dictName="ETL任务类型">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+	</list>
+	<list dictId="etl.serverType" dictName="ETL服务器类型">
+		<param>1</param>
+		<param>2</param>
+	</list>
+	<list dictId="etl.paramType" dictName="ETL参数类型">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+	</list>
+	<list dictId="etl.forecastType" dictName="ETL预处理类型">
+		<param>1</param>
+		<param>2</param>
+		<param>4</param>
+	</list>
+
+	<list dictId="etl.taskflag.runflag" dictName="ETL任务运行状态类型">
+		<param>-1</param>
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+	</list>
+
+	<!-- *************************ec监控系统数据字典************************* -->
+	<!-- 监控预警级别 -->
+	<list dictId="ec.warnLvl" dictName="ec监控预警级别">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+	</list>
+	<!-- 监控预警处理状态 -->
+	<list dictId="mon.deal.status" dictName="mon监控预警处理状态">
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+	</list>
+		<!-- 数据库用户-->
+	<list dictId="user" dictName="mon表分析使用的表空间用户">
+		<param>rpm</param>
+		<param>cognos_rep</param>
+	</list>
+	
+	<!-- 源系统 -->
+	<list dictId="sourseSys" dictName="源系统">
+		<param>99460000000</param>
+		<param>99340000000</param>
+		<param>99700060000</param>
+		<param>99700050000</param>
+		<param>99200000000</param>
+		<param>99350010000</param>
+		<param>99701100000</param>
+		<param>99700270000</param>
+		<param>99700010000</param>
+		<param>99700070000</param>
+		<param>ETL</param>
+		<!-- <param>99700030000</param>
+		<param>99700100000</param>
+		<param>99470000000</param>
+		<param>99360000000</param>
+		<param>99570000000</param>
+		<param>99700080000</param>
+		<param>99700020000</param>
+		<param>99510000000</param>
+		<param>99520000000</param>
+		<param>99380000000</param> -->
+	</list>
+	<!-- 传输状态 -->
+	<list dictId="conveyingStatus" dictName="传输状态">
+		<param>-1</param>
+		<param>0</param>
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+	</list>
+	<!-- 传输类型 -->
+	<list dictId="tranType" dictName="传输类型">
+		<param>0</param>
+		<param>1</param>
+	</list>
+	<!-- 文件传输预警时间 -->
+	<list dictId="mon.time.hour" dictName="传输预警时间">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>12</param>
+		<param>13</param>
+		<param>14</param>
+		<param>15</param>
+		<param>16</param>
+		<param>17</param>
+		<param>18</param>
+		<param>19</param>
+		<param>20</param>
+		<param>21</param>
+		<param>22</param>
+		<param>23</param>
+	</list>
+	
+	<!-- 监控报警分类 -->
+	<list dictId="ec.warnSort" dictName="报警分类">
+		<param>1</param>
+		<param>2</param>
+		<param>3</param>
+		<param>4</param>
+		<param>5</param>
+		<param>6</param>
+		<param>7</param>
+		<param>8</param>
+		<param>9</param>
+		<param>10</param>
+		<param>11</param>
+		<param>12</param>
+		<param>13</param>
+		<param>14</param>
+		<param>15</param>
+		<param>16</param>
+		<param>17</param>
+		<param>18</param>
+	</list>
+</datadict>
+

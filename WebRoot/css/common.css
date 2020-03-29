@@ -1,0 +1,432 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	font-size:12px; 
+	color:#333333;
+	font-family:Helvetica, sans-serif,Arial;
+	font-family:'Microsoft YaHei';
+	background-image: url(../images/rightbg2.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-attachment:fixed;
+}
+
+/*默认页面所有元素无内外边距*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote,table, th, td,iframe {
+    margin: 0;
+    padding: 0;
+}
+/*在id为container中的所有元素超出后隐藏*/
+#container{
+	overflow: hidden;
+}
+/*系统页面的背景色*/
+.mainBgColor {
+	backgroud:#E7F1FD;	
+}
+/*网格的左右边距*/
+.gridDiv {
+	margin-left:30px;
+	margin-right:30px;
+}
+/*引用该样式可将文字转换成“微软雅黑”*/
+.yahei{
+	font-family:'Microsoft YaHei';
+}
+/*将标题字体设置默认大小*/
+h1,h2,h3,h4,h5,h6{
+	font-size:14px;
+}
+/*当页面使用ul li元素时默认为无样式*/
+li{
+	list-style:none;
+}
+/*默认图片标签无边框*/
+img{
+	border:0;
+}
+/*默认表格边框会合并为一个单一的边框*/
+table{
+	border-collapse:collapse;
+}
+/*距离顶部距离*/
+.martop10{
+	margin-top:10px;
+}
+/*左浮动*/
+.fl{
+	float:left;
+	display:inline;
+}
+/*右浮动*/
+.fr{
+	float:right;
+	display:inline;
+}
+/*清楚所有样式：有时候多个元素之间的样式会产生影响，这时候可以在元素之前添加一个空白div元素并引用该样式*/
+.clear {
+    clear: both;
+    height: 0;
+	overflow:hidden;
+	visibility:0;
+    line-height: 0;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+/* Hides from IE-mac \*/
+*+html .clearfix {
+	overflow:hidden;
+}
+* html .clearfix {
+	height: 1%;
+}
+/* End hide from IE-mac */ 
+/*所有连接标签样式：无下划线*/
+a{
+	text-decoration:none;
+	color:#333333;
+}
+/*用户需要给文字添加下划线时可应用该样式*/
+.text_decro{
+	text-decoration:underline;
+}
+/*距离顶部5像素*/
+.martop5{
+	margin-top:5px;
+}
+/*距离顶部10像素*/
+.martop10{
+	margin-top:10px;
+}
+/*距离顶部15像素*/
+.martop15{
+	margin-top:15px;
+}
+/*距离右边元素15像素*/
+.mar_r15{
+	margin-right:15px;
+}
+/*距离左边元素30像素*/
+.mar_l30{
+	margin-left:30px;
+}
+/*红色*/
+.red{
+	color:#F00;
+}
+/*14号字体*/
+.font14{
+	font-size:14px;
+}
+/*16号字体*/
+.font16{
+	font-size:16px;
+}
+/*蓝色*/
+.blue{
+	color:#0e549a;
+	margin-left: 5px;
+}
+/*蓝绿色*/
+.color99{
+	color:#999999;
+}
+/*橘红色*/
+.orange{
+	color:#FF9B37;
+}
+/*居中对齐*/
+.aligncenter{
+	text-align:center;
+}
+
+.border_a{
+	border:#e7e7e7 solid 1px;
+}
+/*最小宽度*/
+.minwidth{
+	min-width:1000px;
+	_width:expression(document.body.clientWidth < 1000 ? "1000px" : "auto");
+}
+
+.mar_30{
+	margin:0px 30px;
+}
+
+/*头部样式*/
+/*折叠按钮*/
+.goclose a.top_arrow{
+	width:14px;
+	height:14px;
+	background:url(../images/top_arrow_u.gif) no-repeat;
+	cursor: pointer;
+}
+
+/*折叠按钮鼠标经过样式*/
+.goclose a.top_arrow:HOVER{
+	width:14px;
+	height:14px;
+	background:url(../images/top_arrow_u2.gif) no-repeat;
+	cursor: pointer;
+}
+
+/*折叠后的按钮样式*/
+.goclose a.top_arrow2{
+	width:14px;
+	height:14px;
+	background:url(../images/top_arrow.gif) no-repeat;
+	cursor: pointer;
+}
+
+/*折叠后的鼠标经过按钮样式*/
+.goclose a.top_arrow2:HOVER{
+	width:14px;
+	height:14px;
+	background:url(../images/top_arrow2.gif) no-repeat;
+	cursor: pointer;
+}
+
+/*折叠后顶部背景样式*/
+#minheader{
+	background:url(../images/minheaderbg.jpg) repeat-x;
+	height:40px;
+	width:100%;
+}
+/*给顶部定位*/
+#header{
+	z-index:100;
+	position:relative;
+}
+
+/*顶部背景图片*/
+.head{
+	background:url(../images/topBg.jpg) repeat-x;
+	height:95px;
+	width:100%;
+}
+.left{
+	float:left;
+}
+
+/*顶部右边背景图片*/
+.rightbg{
+	height:95px;
+	background:url(../images/topLeft.jpg) no-repeat right;
+	width: 100%;
+	}
+/*.top_alltitle{
+	height:92px;
+	overflow:hidden;
+	line-height:38px;}
+.toptitle{
+	font-size:14px;
+	color:#710005;
+	padding-top: 30px;
+	}
+
+.right .toptt1{ font-size:12px; margin-right:30px; color:#333;}
+*/
+
+/*顶部右侧按钮样式*/
+.goclose{
+	float:right;
+}
+/*首页图标*/
+.goclose a{
+	display:block;
+	float:left;
+	padding-right:16px;
+	padding-left:16px;
+	background:url(../images/icons2-1.gif) no-repeat left center;
+}
+/*退出图标*/
+.goclose a.tuichu{
+	background:url(../images/icons2-2.gif) no-repeat left center;
+}
+/*任务图标*/
+.goclose a.taskShow{
+	background:url(../images/icons2-4.gif) no-repeat left center;}
+}
+
+/*下拉列表边框样式*/
+select{ border:#d8d8d8 solid 1px;}
+
+.tree-node-hover{
+	background:#D0E5F5;
+}
+.tree-node{
+	height:20px;
+	white-space:nowrap;
+	cursor:pointer;
+}
+
+/*表单内容距离表单右边距*/
+#formSearch td{height: 20px;padding-right: 10px;}
+
+/*页面底部版权样式*/
+#pagebottom{
+	height:30px;
+	z-index:100000;
+	background:url(../images/topTabBg.png) bottom repeat-x;
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid #959595;
+}
+
+/*左侧菜单背景图片*/
+#leftMenu{
+	background:url(../images/leftMenuBodyBg.jpg) repeat-y;
+}
+
+/*errorPage.jsp返回按钮样式*/
+.rebackBtn{
+	border:none;
+	background:url(../images/rebackBtn.jpg) no-repeat;
+	height:26px;
+	width:74px;
+	text-align:center;
+	font-size:12px;
+	color:#fff;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;}
+/*errorPage.jsp鼠标经过返回按钮样式*/
+.rebackBtn:HOVER{
+	border:none;
+	background:url(../images/rebackBtn2.jpg) no-repeat;
+	height:26px;
+	width:74px;
+	text-align:center;
+	font-size:12px;
+	color:#fff;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;}
+/*按钮样式*/
+.inputd{
+	border:0;
+	background:url(../images/btnimg.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #c7c7c7 solid 1px;}
+/*鼠标进过按钮样式*/
+.inputd:hover{
+	border:0;
+	background:url(../images/btnimg2.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#000;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #79beca solid 1px;
+}
+
+/*顶部可滑动快捷方式样式*/
+.apply {
+	overflow: hidden
+}
+/*单个快捷方式宽度、左浮动、距离下一个快捷方式距离*/
+.apply_array {
+	width: 75px;
+	float: left;
+	margin-right: 10px;
+}
+.apply_last {
+	margin-right: 0px
+}
+.apply_array a:hover {
+	color: #e01111
+}
+/*快捷功能模块整体样式*/
+.apply_nav {
+	position: relative;
+	width: 760px;
+	float: left;
+	height: 90px;
+	overflow: hidden
+}
+.apply_w {
+	position: absolute;
+	margin-top: 10px;
+	width: 600px;
+	float: left;
+	left: 0px;
+}
+/*左滑动按钮*/
+.img_l {
+	cursor: pointer;
+	height: 31px;
+	width: 21px;
+	background: url("../images/left.png");
+}
+/*右滑动按钮*/
+.img_r {
+	cursor: pointer;
+	height: 31px;
+	width: 21px;
+	background: url("../images/right.png");
+}
+/*左滑动按钮鼠标经过样式*/
+.img_l:HOVER {
+	cursor: pointer;
+	height: 31px;
+	width: 21px;
+	background: url("../images/left_hover.png");
+}
+/*右滑动按钮鼠标经过样式*/
+.img_r:HOVER {
+	cursor: pointer;
+	height: 31px;
+	width: 21px;
+	background: url("../images/right_hover.png");
+}
+.app {
+	border-bottom: #cdcdcd 1px solid;
+	border-left: #cdcdcd 1px solid;
+	margin-top: 18px; width: 888px;
+	height: 178px;
+	border-top: #cdcdcd 1px solid;
+	border-right: #cdcdcd 1px solid;
+}
+
+/*快捷方式样式图标样式*/
+.apply .btn{
+	float:left;
+	width:75px;
+	height:72px;
+	text-align: center;
+	padding-top: 7px;
+	color:#195393;
+	font-size: 11px;
+	cursor: pointer;
+}
+/*快捷方式样式图标鼠标经过添加背景图片*/
+.apply .btn:HOVER{
+	width:75px;
+	height:72px;
+	background:url(../images/light.png) no-repeat !important;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='noscale',src='images/light.png'); /* IE6 */
+	_background:none;
+	cursor: pointer;
+}
+/*快捷方式图标下的字体颜色*/
+.btn a{
+	color:#195393;
+}
+/*快捷方式图标距离上下边距*/
+.btn img{
+	padding-bottom: 5px;
+	padding-top: 3px;
+}

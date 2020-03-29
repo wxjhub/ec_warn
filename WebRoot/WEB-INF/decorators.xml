@@ -1,0 +1,24 @@
+﻿<decorators defaultdir="/common/decorators">
+	<decorator name="bottom" page="bottom.jsp"/>
+	<decorator name="top" page="top.jsp"/>
+	<decorator name="menu" page="menu.jsp"/>
+
+	<!-- 列举被修饰页面 -->
+	<!-- 注意：Weblogic修饰jsp目标,Tomcat修饰action目标 -->
+	<decorator name="main" page="main.jsp">
+		<pattern>/platform/metadataxml/*.jsp</pattern>
+		<pattern>/platform/pagemodel/*.jsp</pattern>
+		<pattern>/platform/security/userMgr/*.jsp</pattern>
+		<pattern>/*_*.action*</pattern>  
+		<pattern>/welcome.jsp</pattern>	
+		<pattern>/common/errorPage.jsp</pattern>	
+		<pattern>/pages/*.jsp</pattern>	
+		<pattern>/pages/*/*.jsp</pattern>
+	</decorator>
+
+	<excludes>
+		<pattern>/login.jsp</pattern>
+		<pattern>/flow/pic.jsp</pattern>
+	</excludes>
+
+</decorators>

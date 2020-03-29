@@ -1,0 +1,322 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ include file="/common.jsp"%> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  dir="ltr" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>任务组关系管理</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/icon.css">
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+	font-family: "微软雅黑";
+	behavior:url(${pageContext.request.contextPath}/css/csshover.htc);
+	
+}
+.font{color:red}
+.input_file{width:260px; margin-left:-260px;height:21px; filter:alpha(opacity=0); opacity:0;}
+</style>
+<script type="text/javascript">
+			//条件查询、分页查询
+			function searchUser(){
+			    var processId = $('#processId')[0].value;
+			    var batchId = $('#batchId')[0].value;
+			    var previousProcessId=$('#previousProcessId')[0].value;
+			    $('#etlProcessRelation').datagrid('reload', {
+			    	processId:processId,
+		    	    batchId:batchId,
+		    	    previousProcessId:previousProcessId
+				});    
+			 }
+			$(function(){
+				
+				$('#etlProcessRelation').datagrid({
+					title:'任务组关系管理',
+					width:'100%',
+					height:380,
+					nowrap: false,
+					striped: true,
+					collapsible:false,
+					fitColumns:true,
+					url:'processRelation_findAllProcessRelation.action',
+					idField:'uuid',
+					sortOrder: 'asc',
+					remoteSort: false,
+					scroll:true,
+					queryParams:{batchId:$('#batchId').val(),
+					newpage:1},
+					columns:[[
+									{field:'uuid', checkbox:true, width:20},
+						 			{field:'batchId',title:'批次编号',width:100},  
+							        {field:'processId',title:'任务组编号',width:100},
+							        {field:'previousProcessId',title:'前置任务组编号',width:100}
+					]],
+					pagination:true,
+					rownumbers:false,
+					onClickRow:function(rowIndex, rowData) {
+						clickRow = rowIndex;
+					},
+					toolbar:[{
+						id:'btnadd',
+						text:'添加',
+						iconCls:'icon-add',
+						handler:function(){
+						var all=$("#etlProcessRelation").datagrid("getRows");
+						
+							//$('#btnsave').linkbutton('enable');
+							window.location.href="${pageContext.request.contextPath}/processRelation_toForm.action?batchId="+$("#batchId").val();
+							return false;
+						}
+					},{
+						id:'btneidt',
+						text:'编辑',
+						iconCls:'icon-edit',
+						handler:function(){
+							var selected = $('#etlProcessRelation').datagrid('getSelections');
+							if(selected.length == 0) {
+								$.messager.alert('系统提示','请选择要修改的记录','warning');
+								return;
+							}
+							if(selected.length >1) {
+								$.messager.alert('系统提示','当前选择用户大于一个，请选择一个记录进行修改','warning');
+								return;
+							}else{
+								window.location.href="${pageContext.request.contextPath}/processRelation_toForm.action?uuid="+selected[0].uuid;
+								return false;
+							}
+						}
+					},{
+						id:'btnremove',
+						text:'删除',
+						iconCls:'icon-remove',
+						handler:function(){
+						    var uuids = [];
+							var selected = $('#etlProcessRelation').datagrid('getSelections');
+							for(var i=0; i<selected.length; i++){
+							    uuids.push(selected[i].uuid);
+							}
+							if(selected.length == 0) {
+								$.messager.alert('系统提示','请选择要删除的记录','warning');
+								return;
+							}else{
+								window.location.href="${pageContext.request.contextPath}/processRelation_remove.action?uuids="+uuids;
+								return false;
+								}
+						}
+					},'-',{
+						id:'btnsysmrg',
+						text:'任务组关系校验',
+						iconCls:'icon-sysmrg',
+						handler:function(){
+								$.post( 
+										"${pageContext.request.contextPath}/relationcheck_ProcessCheck.action",
+									     {
+										 	batchId:$('#batchId').val()
+										 },function (data){
+											 var result=eval("(" + data + ")");
+ 					                         alert(result.message);
+								});
+								
+						}
+					}
+					]
+				});
+				var p = $('#etlProcessRelation').datagrid('getPager');
+				$(p).pagination({
+					onBeforeRefresh:function(){
+						//alert('before refresh');
+					}
+				});
+			
+				//查询提交
+				$('#filter_submit').click(function(){
+					var jsonData = {
+							batchId:$('#batchId').val(),
+							processId:$('#processId').val(),
+							previousProcessId:$('#previousProcessId').val(),
+							newpage:1
+							};
+					$('#etlProcessRelation').datagrid('options').queryParams=jsonData;
+					$('#etlProcessRelation').datagrid('load');
+				});
+			
+				//重置查询信息
+				$('#filter_reset').click(function(){
+					//$('#batchName').val('');
+					$('#batchId').val('');
+					$('#processId').val('');
+					$('#previousProcessId').val('');
+					$('#etlProcessRelation').datagrid('options').queryParams="";
+				});
+			
+				var pager = $('#etlProcessRelation').datagrid('getPager');
+				$(pager).pagination({
+					pageSize:10,
+					pageList:[5,10,15],
+					beforePageText:"第",
+					afterPageText:"页  共{pages}页",
+					displayMsg:"当前显示 {from} - {to} 条记录   共 {total} 条记录"
+				});
+			
+				$('select').combobox({
+					panelHeight:'100%'
+				});
+				//comboxselect();
+			});//out
+			
+
+			function comboxselect(){
+				$('#processId').combobox({   
+				    url:'taskRelation_processCombobox.action',
+				    textField:'processName', 
+				    valueField:'processId'
+				}); 
+				$('#taskId').combobox({   
+				    url:'taskRelation_taskCombobox.action',
+				    textField:'taskName', 
+				    valueField:'taskId'
+				}); 
+				
+				$('#previousTaskId').combobox({   
+				    url:'taskRelation_taskCombobox.action',
+				    textField:'taskName', 
+				    valueField:'taskId'
+				}); 
+			}
+
+			function getTemplate(){
+				$('#formSearch').form('submit',{
+					url:"${pageContext.request.contextPath}/downloadTemplate.action?modelName="+"ProcessRelation"
+				});
+			}
+
+			function getTaskByPage(){
+				var pageNo = $('#deptGrid').datagrid('getPager');
+				var pageSize = $(pager).pagination("options");
+
+				//var pageNo = $('#etlTask').datagrid("pageNumber");
+				//var pageSize = $('#etlTask').datagrid("pageSize");
+				//alert(pageNo+"="+pageSize);
+				window.location.href="${pageContext.request.contextPath}/exportExcel.action?modelName="+"ProcessRelation&pageSize="+pageSize+"&pageNo="+pageNo;
+				return false;
+			}
+
+			function getTaskByData(){
+				$('#formSearch').form('submit',{
+					url:"${pageContext.request.contextPath}/exportExcel.action?modelName="+"ProcessRelation"
+				});
+			}
+			function inExcel(){
+				 locking();
+				 var batchId = $('#batchId').val();
+					 var updateUpdata = $('#upload').val();
+					// alert(updateUpdata);
+					 if(updateUpdata!=null&&updateUpdata!=""){
+						   $.ajaxFileUpload({  
+					        	 url: "inputExcel_inputExcelProcessRelation.action?modelName="+"ProcessRelation&batchId="+batchId,
+					             secureuri:false,  
+					             fileElementId: 'upload',//文件选择框的id属性  
+					             dataType:'json',//服务器返回的格式，可以是json  
+					             error: function(request) {      // 设置表单提交出错
+					                 alert("导入失败！！");
+					             },
+					             success: function(data) { // 设置表单提交完成使用方法
+					            	var zNodes = eval(data); 
+					            	if(zNodes.length>0){
+					            		var errorInfo ="";
+					            		//alert(zNodes);
+					                	for(var i=0;i<zNodes.length;i++){
+					                		//alert(zNodes[i]);
+					                		errorInfo+=zNodes[i]+"\r\r";
+					                    }
+					                    alert(errorInfo);     
+					                }  else{
+					                	  alert("导入成功！");
+					                  }
+					            	unlock();                  
+					             }
+					         });
+						 }else{
+							alert("请选择导入文件！！！");
+						}
+			       
+			}
+			function locking(){     
+			       var sWidth,sHeight;  
+			      // var imgPath = slow ? "img/waiting_slow.gif" : "img/waiting_fast.gif";  
+			       sWidth  = top.document.body.clientWidth;  
+			       sHeight = top.document.body.clientHeight;  
+			       var bgObj=top.document.createElement("div");    
+			       bgObj.setAttribute("id","divLock");  
+			       bgObj.style.position="absolute";  
+			       bgObj.style.top="0";  
+			       bgObj.style.background="#cccccc";  
+			       bgObj.style.filter="progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75";  
+			       bgObj.style.opacity="0.6";  
+			       bgObj.style.left="0";  
+			       bgObj.style.width=sWidth + "px";  
+			       bgObj.style.height=sHeight + "px";  
+			       bgObj.style.zIndex = "100";  
+			       top.document.body.appendChild(bgObj);  
+			       var html = "<table border=\"0\" width=\""+sWidth+"\" height=\""+sHeight+"\"><tr><td valign=\"middle\" align=\"center\">请稍候正在导入</td></tr></table>";  
+			       bgObj.innerHTML = html;  
+			       // 解锁  
+			       bgObj.onclick = function(){  
+			            unlock(); // 应该等完成后再解锁  
+			       }
+				  }  
+			function unlock(){  
+			   var divLock = top.document.getElementById("divLock");  
+			   if(divLock == null) return;  
+			   top.document.body.removeChild(divLock);  
+			}
+</script>
+</head>
+<body>
+<%String batchId=(String)request.getParameter("batchId");
+System.out.println(request.getParameter("batchId"));
+System.out.println(batchId);
+%>
+	<form name="formSearch" id="formSearch" method="post" style="padding: 20px 0 20px 30px;">
+		<INPUT name="pageNo" id="pageNo"type="hidden" value="${param.pageNo}">
+		<INPUT name="batchId" id="batchId" type="hidden" value="${batchId}">
+		<table cellSpacing="0" cellpadding="0" border="0">
+			<tr>
+				<td height="40px">任务组编号：</td>
+				<td height="40px">
+					<input id="processId" name="processId" value="" class="input_eq" style="width:100px"/> 
+				</td>
+				<td height="40px">前置任务组编号：</td>
+				<td height="40px">
+					<input id="previousProcessId" name="previousProcessId" value="" class="input_eq" style="width:100px"/> 
+				</td>
+				<td>
+					<input id="filter_submit" class="inputd" type="button" value="查 询"/>
+					<input id="filter_reset" class="inputd" type="reset"  value="重 置"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div class="gridDiv">
+		<table id="etlProcessRelation" name="etlProcessRelation"></table>
+		<br>
+		<form method="post" enctype="multipart/form-data" id="excel" action="inputExcel_inputExcelTask.action?modelName=Task" style="">
+		
+			<input style="border: 1px #c0c0c0 solid;height: 19px;" type="text" id="txt" name="txt" />
+			<input type="button" class="inputd" value="浏览" />
+			<input class="input_file" id="upload" name="upload" type="file" onchange="txt.value=this.value" />
+			<input type="button" class="importdate" value="数据导入" id="inputExcel" name="inputExcel" onclick="inExcel()"> 
+			<input type="button" class="downloadtemplate" value="模板下载" id="loadTemplate" name="loadTemplate" onclick="getTemplate()"> 
+			 <!--<input type="button" class="pagedataexport" value="页面数据导出" id="exportTaskByPage" name="exportTaskByPage" onclick="getTaskByPage()"> --> 
+		    <input type="button" class="export2" value="服务器数据导出" id="exportTaskByData" name="exportTaskByData" onclick="getTaskByData()"> 
+	    </form>
+	</div>
+
+</body>
+</html>
+

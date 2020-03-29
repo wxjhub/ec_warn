@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.vprisk.mnt.entity.ClientConfig" table="MNT_MON_CLIENT_CONFIG">
+		<id name="uuid" type="java.lang.String" column="UUID">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="systemName" type="java.lang.String" column="SYSTEM_NAME"></property>
+		<property name="subsystemName" type="java.lang.String" column="SUBSYSTEM_NAME"></property>
+		<property name="nodeName" type="java.lang.String" column="NODE_NAME"></property>
+		<property name="ipAddress" type="java.lang.String" column="IP_ADDRESS"></property>
+		<property name="informationCenter" type="java.lang.String" column="INFORMATION_CENTER"></property>
+		<property name="remarks" type="java.lang.String" column="REMARKS"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+  <package name="etl" extends="struts-default,json-default">
+  
+   <interceptors>
+     	<interceptor name="rmp_exception" class="com.vprisk.rmplatform.exception.ExceptionInteceptor"/>
+		<interceptor-stack name="defaultStack-security">
+               <interceptor-ref name="alias"/>
+               <interceptor-ref name="servletConfig"/>
+               <interceptor-ref name="chain"/>
+               <interceptor-ref name="fileUpload"/>
+               <interceptor-ref name="actionMappingParams"/>
+               <interceptor-ref name="params">
+                   <param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+               </interceptor-ref>
+           </interceptor-stack>
+           
+		<interceptor-stack name="securityStack">
+			<interceptor-ref name="defaultStack-security" />
+			 <interceptor-ref name="rmp_exception" />
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="securityStack"/>
+	
+	<global-results>
+		<result name="error">/errorPage.jsp</result> 
+	</global-results> 
+    
+    <action name="monitor_*" class="com.vprisk.etl.action.MonitorAction" method="{1}">
+      <result name="list">/etl/monitor/processMonitor.jsp</result>
+    </action>
+    <action name="task_*" class="com.vprisk.etl.action.TaskAction" method="{1}">
+      <result name="list">/etl/etl_taskortype_list.jsp</result>
+      <result name="toform">/etl/etl_task_toForm.jsp</result>
+      <result name="remove">/etl/etl_task_list.jsp</result>
+    </action>
+    <action name="process_*" class="com.vprisk.etl.action.ProcessAction" method="{1}">
+      <result name="list">/etl/etl_process_list.jsp</result>
+      <result name="toform">/etl/etl_process_toForm.jsp</result>
+      <result name="remove">/etl/etl_process_list.jsp</result>
+      <result name="toconfig">/etl/etl_taskrelation_list.jsp?processId=${processId}</result>
+      <result name="toStatusConfig">/etl/etl_taskstatus_list.jsp</result>
+    </action>
+    <action name="processStatus_*" class="com.vprisk.etl.action.ProcessStatusAction" method="{1}">
+      <result name="toform">/etl/etl_processstatus_toForm.jsp</result>
+      <result name="list">/etl/etl_processstatus_list.jsp</result>
+    </action>
+    <action name="taskStatus_*" class="com.vprisk.etl.action.TaskStatusAction" method="{1}">
+      <result name="toform">/etl/etl_taskstatus_toForm.jsp</result>
+      <result name="list">/etl/etl_taskstatus_list.jsp</result>
+    </action>
+    <action name="taskRelation_*" class="com.vprisk.etl.action.TaskRelationAction" method="{1}">
+      <result name="to_list">/etl/etl_process_list.jsp</result>
+      <result name="to_Form">/etl/etl_taskrelation_toForm.jsp</result>
+      <result name="to_Editor">/etl/etl_taskrelation_editor.jsp?processId=${processId}</result>
+    </action>
+    <action name="batch_*" class="com.vprisk.etl.action.BatchAction" method="{1}">
+      <result name="list">/etl/etl_batch_list.jsp</result>
+      <result name="toform">/etl/etl_batch_toForm.jsp</result>
+      <result name="remove">/etl/etl_batch_list.jsp</result>
+      <result name="toconfig">/etl/etl_processrelation_list.jsp</result>
+      <result name="toStatusConfig">/etl/etl_processstatus_list.jsp</result>
+      <result name="findBatchByMonitor" type="json"/>
+    </action>
+    <action name="server_*" class="com.vprisk.etl.action.ServerAction" method="{1}">
+      <result name="toForm">/etl/etl_server_toForm.jsp</result>
+      <result name="saveServer">/etl/etl_server_list.jsp</result>
+      <result name="to_list">/etl/etl_server_list.jsp</result>
+    </action>
+    <action name="processRelation_*" class="com.vprisk.etl.action.ProcessRelationAction" method="{1}">
+      <result name="list">/etl/etl_processrelation_list.jsp</result>
+      <result name="toform">/etl/etl_processrelation_toForm.jsp</result>
+      <result name="remove">/etl/etl_processrelation_list.jsp</result>
+      <result name="toconfig">/etl/etl_processrelation_list.jsp</result>
+    </action>
+     
+    <action name="test_*" class="com.vprisk.etl.action.TestAction" method="{1}">
+      <result name="test">/etl/etl_task_list.jsp</result>
+    </action>
+    <action name="taskType_*" class="com.vprisk.etl.action.TaskTypeAction" method="{1}">
+      <result name="list">/etl/etl_taskortype_list.jsp</result>
+      <result name="toform">/etl/etl_taskType_toForm.jsp</result>
+    </action>
+    <action name="downloadTemplate" class="com.vprisk.etl.action.ExcelAction" method="downloadTemplate">
+      <result name="downloadTemplate" type="stream"> 
+        <!--type 为 stream 应用 StreamResult 处理-->  
+        <param name="contentType">application/octet-stream</param>  
+        <!--默认为 text/plain-->  
+        <param name="inputName">excelTemplate</param>  
+        <param name="contentDisposition">attachment;filename="${fileName}"</param>  
+        <param name="bufferSize">4096</param>  
+        <!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
+    <action name="exportExcel" class="com.vprisk.etl.action.ExcelAction" method="exportExcel">
+      <result name="exportExcel" type="stream"> 
+        <!--type 为 stream 应用 StreamResult 处理-->  
+        <param name="contentType">application/octet-stream</param>  
+        <!--默认为 text/plain-->  
+        <param name="inputName">exportExcel</param>  
+        <param name="contentDisposition">attachment;filename="${fileName}"</param>  
+        <param name="bufferSize">4096</param>  
+        <!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
+    <action name="inputExcel_*" class="com.vprisk.etl.action.ExcelAction" method="{1}">
+      <result name="inputTask">/etl/etl_task_list.jsp</result>
+    </action>
+    <action name="etlinputExcel_*" class="com.vprisk.etl.action.ExcelAction1" method="{1}">
+    </action>
+    <action name="taskHisDetailInfoAction_*" class="com.vprisk.etl.action.TaskHisDetailInfoAction" method="{1}">
+      <result name="toDetail">/etl/scheduler_log_form.jsp</result>
+      <result name="to_list">/etl/scheduler_log_list.jsp</result>
+    </action>
+    <action name="relationcheck_*" class="com.vprisk.etl.action.RelationcheckAction" method="{1}"/> 
+    
+    <action name="check_*" class="com.vprisk.etl.action.CheckAction" method="{1}"/>
+   
+    <action name="schedulerParam_*" class="com.vprisk.etl.action.SchedulerParamAction" method="{1}">
+       <result name="toForm">/etl/etl_schedulerParam_toForm.jsp</result>
+       <result name="list">/etl/etl_schedulerParam_list.jsp</result>
+    </action>
+    
+    <action name="schedulerLog_*" class="com.vprisk.etl.action.SchedulerLogAction" method="{1}">
+    </action>
+    
+     <action name="activeMqMonitor_*" class="com.vprisk.etl.action.ActiveMqMonitorAction" method="{1}">
+    </action>
+     <action name="job_*" class="com.vprisk.etl.action.JobAction" method="{1}">
+      <result name="toStatusConfig">/etl/etl_processstatus_list.jsp</result>
+    </action>
+    <action name="batchParam_*" class="com.vprisk.etl.action.BatchParamAction" method="{1}">
+    </action>
+    
+  </package>
+</struts>

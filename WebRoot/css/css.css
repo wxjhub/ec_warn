@@ -1,0 +1,257 @@
+@charset "utf-8";
+/* CSS Document */
+/*登录后首页*/
+
+/*关闭左侧菜单按钮*/
+.lefticons{
+	background:url(../images/icons3.gif) no-repeat;
+	width:9px;
+	height:41px;
+	position:absolute;
+	left:0;
+	display:block;
+	top:40%;
+	cursor:pointer;
+}
+
+/*打开左侧菜单按钮*/
+.lefticons_s{
+	background:url(../images/icons3-1.gif) no-repeat;
+	left:0px;
+}
+
+/*按钮样式*/
+.inputd{
+	border:0;
+	background:url(../images/btnimg.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+    width:50px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #c7c7c7 solid 1px;
+}
+
+/*鼠标经过按钮改变背景图片*/
+.inputd:hover{
+	border:0;
+	background:url(../images/btnimg2.gif) repeat-x bottom;
+	height:21px;
+	text-align:center;
+	font-size:12px;
+	color:#000;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	border: #79beca solid 1px;
+}
+
+/*网格页面查询信息边距*/
+.majorword{
+	height:auto;
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+
+/*输入框样式：用于查询界面*/
+.input_eq{
+	width:140px;   
+	border:#CCC solid 1px;
+	height:20px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	line-height: 20px;
+}
+
+/*etl页面应用样式*/
+.zhenghe_l{
+	width:538px;
+	padding-bottom:20px;
+	margin-left:30px;
+	background:#FFF;
+	margin-top:30px;
+	border:#c0c0c0 solid 1px;
+}
+.zhenghe_l h2{
+	display:block;
+	background:url(../images/rightbg3.gif) repeat-x;
+	height:30px;
+	line-height:30px;
+	border-bottom:#c0c0c0 solid 1px;
+}
+.zhenghe_l h2 span{
+	font-size:12px;
+	font-weight:normal;
+	display:block;
+	background:url(../images/righticons5.gif) no-repeat left center;
+	margin-left:15px;
+	padding-left:10px;
+}
+
+/*index.jsp密码修改弹出窗口文字样式*/
+.infor_tt{
+	background:#f2f6f9;
+	height:30px;
+	padding-left:25px;
+	border-bottom:#d8d8d8 solid 1px;
+	line-height:30px;
+}
+
+/*begin 老版按钮样式*/
+.zh_btn{
+	margin-top:30px;
+	border-top:#CCC dotted 1px;
+	padding-top:10px;
+}
+.zh_btnbg1{
+	border:0;
+	background:url(../images/rightbtn2.gif) no-repeat;
+	width:55px;
+	height:21px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+.zh_btnbg2{
+	border:0;
+	background:url(../images/rightbtn1.gif) no-repeat;
+	width:55px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+.zh_btnbg3{
+	border:0;
+	background:url(../images/rightbtnbig.gif) no-repeat;
+	width:90px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+	margin-right: 20px;
+}
+.add1{
+	border:0;
+	background:url(../images/add.gif) no-repeat;
+	width:45px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+}
+.add3{
+	border:0;
+	background:url(../images/add4.gif) no-repeat;
+	width:45px;
+	height:21px;
+	text-align:center;
+	color:#333333;
+	font-size:12px;
+	font-family:'Microsoft YaHei';
+	cursor:pointer;
+}
+/*end 老版按钮样式*/
+
+/*鼠标经过自定义网格每一行每一行时的背景色*/
+.td_bg{
+	background:#e9f2d3;
+}
+
+/*select框样式*/
+.input_bga{
+	width:202px;
+}
+
+.table_list th{
+	background-image: url(../images/rightbg3.gif);
+	background-repeat: repeat-x;
+}
+
+/*begin自定义网格各行变色样式（通过js来控制）*/
+#tab .trOdd{
+	background-color: #fafafa
+}
+#tab .trEven{
+	background-color: #f2f6f9
+}
+/*end自定义网格各行变色样式（通过js来控制）*/
+
+
+/*etl页面数据导出按钮*/
+.pagedataexport{
+	border:0;
+	background:url(../images/pagedataexport.jpg) no-repeat;
+	height:21px;
+	width:96px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+
+/*etl页面模板下载按钮*/
+.downloadtemplate{
+	border:0;
+	background:url(../images/downloadtemplate.jpg) no-repeat;
+	height:21px;
+	width:96px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+
+/*etl页面服务器数据导出按钮*/
+.export2{
+	border:0;
+	background:url(../images/export2.jpg) no-repeat;
+	height:21px;
+	width:108px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+
+/*etl页面数据导入按钮*/
+.importdate{
+	border:0;
+	background:url(../images/importdate.jpg) no-repeat;
+	height:21px;
+	width:96px;
+	text-align:center;
+	font-size:12px;
+	color:#333333;
+	font-family:'Microsoft YaHei';
+	padding:0 8px 0 8px;
+	cursor:pointer;
+	padding-left: 20px;
+	margin-left: 10px;
+}

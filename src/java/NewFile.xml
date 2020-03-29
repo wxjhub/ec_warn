@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service version="2.0">
+	<SYS_HEAD>
+		<SYS_NO attr="s,50">00004969</SYS_NO>
+		<TRAN_TIMESTAMP attr="s,50">115806658</TRAN_TIMESTAMP>
+		<USER_ID attr="s,50">20110754310</USER_ID>
+		<BRANCH_ID attr="s,50">44000202</BRANCH_ID>
+		<SYS_CODE attr="s,50">99340000000</SYS_CODE>
+		<TRAN_DATE attr="s,50">20160425</TRAN_DATE>
+		<SEQ_NO attr="s,50">40572fc4fe854454b03c5271fbc6934b</SEQ_NO>
+	</SYS_HEAD>
+	<BODY>
+		<CONTRACT_ID attr="s,50" />
+		<TERM attr="s,50">12</TERM>
+		<ADJUSTABLETYPE attr="s,50">9</ADJUSTABLETYPE>
+		<IDENT_NO attr="s,50">511027197504124959</IDENT_NO>
+		<IDENT_TYPE attr="s,50">10</IDENT_TYPE>
+		<INT_RATE attr="s,50">5.4375</INT_RATE>
+		<PD_RATE attr="s,50" />
+		<CUST_NO attr="s,50">00000001254468</CUST_NO>
+		<PRODUCT attr="s,50">B80101</PRODUCT>
+		<LGD_RATE attr="s,50" />
+		<INDUSTRY attr="s,50">733:F:51:513:5132</INDUSTRY>
+		<MARGIN_TYPE attr="s,50">1</MARGIN_TYPE>
+		<PRINCIPAL attr="s,50">10000</PRINCIPAL>
+		<BRANCH attr="s,50">44000202</BRANCH>
+		<MARGIN_RATE attr="s,50">25.00</MARGIN_RATE>
+		<CUST_NAME attr="s,50">??</CUST_NAME>
+		<CREDIT attr="s,50">A</CREDIT>
+		<ORDER_STATE attr="s,50">1</ORDER_STATE>
+		<CURRENCY attr="s,50">156</CURRENCY>
+		<CUST_LVL attr="s,50" />
+		<RPYM_TYPE attr="s,50">1100</RPYM_TYPE>
+		<TERM_MULT attr="s,50">M</TERM_MULT>
+		<BASE_RATE attr="s,50">4.35</BASE_RATE>
+		<SCENEPROD attr="array">
+			<struct>
+				<SCENETERMMULT attr="s,50">M</SCENETERMMULT>
+				<SCENEPRODVALUE attr="s,50">100000</SCENEPRODVALUE>
+				<SCENEINTEREST attr="s,50">2.1</SCENEINTEREST>
+				<SCENETERM attr="s,50">12</SCENETERM>
+				<SCENECURRENCY attr="s,50">156</SCENECURRENCY>
+				<SCENEPROD attr="s,50">20102</SCENEPROD>
+			</struct>
+		</SCENEPROD>
+		<GUARANTOR attr="array" />
+		<MORTGAGE attr="array" />
+		<ATTACHMENTS attr="array" />
+		<CHANNEL attr="s,50">01</CHANNEL>
+		<STATUS attr="s,50">1</STATUS>
+	</BODY>
+</service>
